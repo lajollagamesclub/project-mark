@@ -11,14 +11,14 @@ var velocity: Vector2 = Vector2()
 func _physics_process(delta):
 	var horizontal: int = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))
 	var vertical: int = int(Input.is_action_pressed("g_down")) - int(Input.is_action_pressed("g_up"))
-	
+
 	if abs(velocity.x) < move_decelleration*delta:
 		velocity.x = 0.0
 	if abs(velocity.y) < move_decelleration*delta:
 		velocity.y = 0.0
 	acceleration.x = calculate_acceleration(horizontal, delta, velocity.x)
 	acceleration.y = calculate_acceleration(vertical, delta, velocity.y)
-	
+
 	velocity += acceleration*delta
 	velocity.x = clamp(velocity.x, -maximum_velocity, maximum_velocity)
 	velocity.y = clamp(velocity.y, -maximum_velocity, maximum_velocity)
