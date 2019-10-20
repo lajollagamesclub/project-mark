@@ -1,2 +1,5 @@
-# project-mark
-Procedural survival game - prototype
+# pixel-floater
+A small infinite procedurally generated world demo
+
+## play
+https://creikey.itch.io/pixel-floater
