@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://StarryBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://StarryBackground.shader" type="Shader" id=2]
@@ -10,18 +10,32 @@
 shader = ExtResource( 2 )
 shader_param/global_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 shader_param/offset = Vector2( 800, 300 )
-shader_param/relative_motion = 3.1
+shader_param/relative_motion = 1.2
+shader_param/star_size = 2.7
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 2 )
+shader_param/global_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+shader_param/offset = Vector2( 1500, 700 )
+shader_param/relative_motion = 1.4
 shader_param/star_size = 2.7
 
 [node name="Main" type="Node2D"]
 
 [node name="StarryBackground" parent="." instance=ExtResource( 1 )]
+parallax_scale = 0.7
 
 [node name="StarryBackground2" parent="." instance=ExtResource( 1 )]
 material = SubResource( 1 )
-relative_motion = 3.1
+relative_motion = 1.2
 parallax_scale = 0.5
 offset = Vector2( 800, 300 )
+
+[node name="StarryBackground3" parent="." instance=ExtResource( 1 )]
+material = SubResource( 2 )
+relative_motion = 1.4
+parallax_scale = 0.3
+offset = Vector2( 1500, 700 )
 
 [node name="Icon" type="Sprite" parent="."]
 position = Vector2( 170.896, 92.2284 )
