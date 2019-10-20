@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Pixel Floater"
+config/name="Project Mark"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
