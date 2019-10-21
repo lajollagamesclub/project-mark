@@ -12,6 +12,7 @@ func _physics_process(delta):
 	var horizontal: int = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))
 	var vertical: int = int(Input.is_action_pressed("g_down")) - int(Input.is_action_pressed("g_up"))
 
+	
 	if abs(velocity.x) < move_decelleration*delta:
 		velocity.x = 0.0
 	if abs(velocity.y) < move_decelleration*delta:

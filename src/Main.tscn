@@ -52,9 +52,9 @@ texture = ExtResource( 3 )
 script = ExtResource( 5 )
 show_spawn_visually = false
 safe_radius = 800.0
-camera_view_radius = 750.0
-player_visibility_radius = 1500.0
-target_enemies = 200
+camera_view_radius = 1920.0
+player_visibility_radius = 3000.0
+target_enemies = 30
 player_path = NodePath("../Player")
 
 [node name="InstructionsLabel" type="Label" parent="."]

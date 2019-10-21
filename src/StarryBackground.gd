@@ -1,12 +1,9 @@
 tool
 extends Node2D
 
-export (NodePath) var player_path
 export var relative_motion: float = 1.0 setget set_relative_motion
 export var parallax_scale: float = 1.0
 export var offset: Vector2 = Vector2() setget set_offset
-
-onready var player_node = get_node(player_path)
 
 #func _ready():
 #	set_process(!Engine.editor_hint)
