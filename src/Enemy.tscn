@@ -8,6 +8,7 @@ bounce = 0.3
 [sub_resource type="RectangleShape2D" id=2]
 
 [node name="Enemy" type="RigidBody2D"]
+mass = 12.91
 physics_material_override = SubResource( 1 )
 script = ExtResource( 1 )
 
