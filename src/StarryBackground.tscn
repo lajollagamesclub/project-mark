@@ -3,7 +3,7 @@
 [ext_resource path="res://StarryBackground.shader" type="Shader" id=1]
 [ext_resource path="res://StarryBackground.gd" type="Script" id=2]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
 shader_param/global_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 shader_param/offset = Vector2( 0, 0 )
@@ -11,5 +11,5 @@ shader_param/relative_motion = 1.0
 shader_param/star_size = 2.7
 
 [node name="StarryBackground" type="Node2D"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 script = ExtResource( 2 )

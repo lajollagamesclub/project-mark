@@ -4,7 +4,11 @@
 [ext_resource path="res://spaceship.png" type="Texture" id=2]
 
 [node name="Player" type="RigidBody2D"]
+mass = 8.1
 script = ExtResource( 1 )
+forward_force = 4000
+frictional_force = 10000
+turning_torque = 400.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
