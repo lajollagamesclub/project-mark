@@ -8,7 +8,9 @@ bounce = 0.3
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 20, 20 )
 
-[node name="Enemy" type="RigidBody2D"]
+[node name="Enemy" type="RigidBody2D" groups=[
+"asteroids",
+]]
 mass = 55.11
 physics_material_override = SubResource( 1 )
 script = ExtResource( 1 )
