@@ -54,7 +54,7 @@ show_spawn_visually = false
 safe_radius = 800.0
 camera_view_radius = 1920.0
 player_visibility_radius = 3000.0
-target_enemies = 60
+target_enemies = 75
 player_path = NodePath("../Player")
 
 [node name="InstructionsLabel" type="Label" parent="."]

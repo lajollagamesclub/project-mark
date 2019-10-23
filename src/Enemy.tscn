@@ -6,20 +6,21 @@
 bounce = 0.3
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 30, 30 )
+extents = Vector2( 20, 20 )
 
 [node name="Enemy" type="RigidBody2D"]
 mass = 55.11
 physics_material_override = SubResource( 1 )
 script = ExtResource( 1 )
+size = 40
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -30.0
-margin_top = -30.0
-margin_right = 30.0
-margin_bottom = 30.0
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
 color = Color( 1, 0.262745, 0.262745, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
