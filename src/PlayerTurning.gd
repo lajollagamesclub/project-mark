@@ -8,7 +8,7 @@ export var rotational_speed = 360.0
 func _process(delta):
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
 		var tapped = asteroid.tap_resource(delta)
-		if tapped:
+		if tapped and not is_on_wall():
 			var asteroid_distance: float = global_position.distance_to(asteroid.global_position)/$AsteroidVisualizations/CollisionShape2D.shape.radius
 			player_state.fuel += lerp(0.0, 10.0, asteroid_distance)*delta
 
@@ -25,5 +25,5 @@ func _physics_process(delta):
 		preload("res://player_state.tres").fire_bullet()
 	
 	rotation += float(horizontal)*deg2rad(rotational_speed)*delta
-	
-	move_and_collide(Vector2(0, -movement_speed).rotated(rotation)*delta, false)
+	# Vector2 move_and_slide( Vector2 linear_velocity, Vector2 floor_normal=Vector2( 0, 0 ), bool stop_on_slope=false, int max_slides=4, float floor_max_angle=0.785398, bool infinite_inertia=true )
+	move_and_slide(Vector2(0, -movement_speed).rotated(rotation), Vector2(), false, 1, 0.7, false)
