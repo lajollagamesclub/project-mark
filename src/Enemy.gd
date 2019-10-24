@@ -7,6 +7,11 @@ export var size: int = 30 setget set_size
 
 var despawn_distance: float = 500.0
 var player_node: Node2D
+var resource_amount: float = 1.0 setget set_resource_amount
+
+func set_resource_amount(new_resource_amount):
+	resource_amount = new_resource_amount
+	modulate = lerp(Color(0, 0, 0), Color(1, 1, 1), resource_amount)
 
 func set_size(new_size):
 	if new_size % 2 != 0:
@@ -22,6 +27,14 @@ func _ready():
 	if Engine.editor_hint:
 		set_physics_process(false)
 		set_process(false)
+
+func _process(delta):
+	if resource_amount < 1.0:
+		self.resource_amount += delta*0.5
+
+func tap_resource(delta):
+	if resource_amount > 0.0:
+		self.resource_amount -= delta + delta*0.5
 
 func _physics_process(delta):
 	if player_node.global_position.distance_to(global_position) >= despawn_distance:
