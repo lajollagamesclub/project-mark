@@ -5,7 +5,7 @@ export var rotational_speed = 360.0
 
 func _process(delta):
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
-		asteroid.tap_resource(delta)
+		var tapped = asteroid.tap_resource(delta)
 
 func _physics_process(delta):
 	var horizontal: int = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))

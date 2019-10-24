@@ -32,9 +32,12 @@ func _process(delta):
 	if resource_amount < 1.0:
 		self.resource_amount += delta*0.5
 
-func tap_resource(delta):
+func tap_resource(delta) -> bool:
 	if resource_amount > 0.0:
 		self.resource_amount -= delta + delta*0.5
+		return true
+	else:
+		return false
 
 func _physics_process(delta):
 	if player_node.global_position.distance_to(global_position) >= despawn_distance:

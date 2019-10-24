@@ -10,7 +10,8 @@ func _process(delta):
 func _draw():
 	for b in get_bodies_in_group():
 		var line_vector: Vector2 = to_local(b.global_position)
-		draw_line(Vector2(), line_vector, Color(1, 0, 0, 1.2 - line_vector.length()/$CollisionShape2D.shape.radius), 10.0)
+		var closeness_fraction: float = 1.2 - line_vector.length()/$CollisionShape2D.shape.radius
+		draw_line(Vector2(), line_vector, Color(1, 0, 0, closeness_fraction), lerp(1.0, 20.0, closeness_fraction))
 
 func get_number_of_attached() -> int:
 	return get_bodies_in_group().size()
