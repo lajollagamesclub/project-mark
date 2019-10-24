@@ -71,6 +71,7 @@ texture = ExtResource( 5 )
 to_spawn_pack = ExtResource( 8 )
 
 [node name="FollowerSpawner" parent="." instance=ExtResource( 7 )]
+safe_radius = 5.0
 target_enemies = 5
 to_spawn_pack = ExtResource( 9 )
 
