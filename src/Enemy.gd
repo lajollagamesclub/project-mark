@@ -16,6 +16,11 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector2(), false, 4, 0.78, false)
 
+	for c in range(get_slide_count()):
+		var collision = get_slide_collision(c)
+		if collision.collider.is_in_group("player"):
+			get_tree().change_scene("res://GameOver.tscn")
+
 func hit():
 	queue_free()
 	emit_signal("dead")
