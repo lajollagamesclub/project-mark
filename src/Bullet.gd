@@ -28,3 +28,8 @@ func make_odd(new_size_component: float, old_size_component: float) -> float:
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+func _on_Bullet_body_entered(body):
+	if body.is_in_group("hittable"):
+		body.hit()
+		queue_free()

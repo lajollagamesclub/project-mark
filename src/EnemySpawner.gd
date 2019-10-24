@@ -6,6 +6,7 @@ export var safe_radius = 500.0
 export var camera_view_radius = 400.0
 export var player_visibility_radius = 1000.0
 export var target_enemies: int = 60
+export (PackedScene) var to_spawn_pack
 export (NodePath) var player_path = ""
 
 var player_node: Node2D = null
@@ -25,7 +26,7 @@ func _process(delta):
 		update()
 	if player_node.global_position.distance_to(Vector2()) >= safe_radius:
 		while number_of_enemies < target_enemies:
-			var cur_enemy = preload("res://Enemy.tscn").instance()
+			var cur_enemy = to_spawn_pack.instance()
 			cur_enemy.player_node = player_node
 			cur_enemy.despawn_distance = player_visibility_radius
 			var theta = rand_range(0, 2*PI)
