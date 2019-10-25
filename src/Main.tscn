@@ -40,9 +40,7 @@ visible = false
 visible = false
 
 [node name="StarryBackground" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
-relative_motion = 1.0
 parallax_scale = 0.7
-offset = Vector2( 0, 0 )
 
 [node name="StarryBackground2" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 material = SubResource( 1 )
@@ -68,9 +66,11 @@ texture = ExtResource( 5 )
 [node name="Player" parent="." instance=ExtResource( 6 )]
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 7 )]
+show_spawn_visually = false
 to_spawn_pack = ExtResource( 8 )
 
 [node name="FollowerSpawner" parent="." instance=ExtResource( 7 )]
+show_spawn_visually = false
 safe_radius = 5.0
 target_enemies = 5
 to_spawn_pack = ExtResource( 9 )
