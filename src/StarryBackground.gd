@@ -8,7 +8,7 @@ export var offset: Vector2 = Vector2() setget set_offset
 #func _ready():
 #	set_process(!Engine.editor_hint)
 
-func _process(delta):
+func _process(_delta):
 	if !Engine.editor_hint:
 		global_transform.origin = -get_viewport().canvas_transform.origin
 	

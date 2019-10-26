@@ -66,11 +66,10 @@ texture = ExtResource( 5 )
 [node name="Player" parent="." instance=ExtResource( 6 )]
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 7 )]
-show_spawn_visually = false
+safe_radius = 0.0
 to_spawn_pack = ExtResource( 8 )
 
 [node name="FollowerSpawner" parent="." instance=ExtResource( 7 )]
-show_spawn_visually = false
 safe_radius = 5.0
 target_enemies = 5
 to_spawn_pack = ExtResource( 9 )

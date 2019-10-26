@@ -16,6 +16,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	var horizontal: int = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))
+# warning-ignore:unused_variable
 	var vertical: int = int(Input.is_action_pressed("g_up")) - int(Input.is_action_pressed("g_down"))
 #	var dash: int = int(Input.is_action_just_pressed("g_dash_right")) - int(Input.is_action_just_pressed("g_dash_left"))
 	
@@ -28,4 +29,5 @@ func _physics_process(delta):
 	
 	rotation += float(horizontal)*deg2rad(rotational_speed)*delta
 	# Vector2 move_and_slide( Vector2 linear_velocity, Vector2 floor_normal=Vector2( 0, 0 ), bool stop_on_slope=false, int max_slides=4, float floor_max_angle=0.785398, bool infinite_inertia=true )
+# warning-ignore:return_value_discarded
 	move_and_slide(Vector2(0, -movement_speed).rotated(rotation), Vector2(), false, 1, 0.7, false)
