@@ -25,6 +25,7 @@ func _physics_process(delta):
 		get_parent().get_node("Bullets").add_child(cur_bullet)
 		cur_bullet.global_position = global_position
 		cur_bullet.rotation = global_position.angle_to_point(get_global_mouse_position()) + PI
+		$FireStreamPlayer.play()
 		player_state.fire_bullet()
 	
 	rotation += float(horizontal)*deg2rad(rotational_speed)*delta

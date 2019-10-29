@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PlayerTurning.gd" type="Script" id=1]
 [ext_resource path="res://spaceship.png" type="Texture" id=2]
 [ext_resource path="res://AsteroidVisualizations.gd" type="Script" id=3]
+[ext_resource path="res://player-attack.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 171.606
@@ -43,3 +44,7 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AsteroidVisualizations"]
 shape = SubResource( 1 )
+
+[node name="FireStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -12.93
