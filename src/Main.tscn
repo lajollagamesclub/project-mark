@@ -30,6 +30,11 @@ shader_param/star_size = 2.7
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
 
+[node name="StartMeasuringTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
 [node name="StarsPerformanceSwitcher" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
@@ -113,3 +118,4 @@ anchor_bottom = 1.0
 margin_top = -14.0
 margin_right = 40.0
 script = ExtResource( 12 )
+[connection signal="timeout" from="StartMeasuringTimer" to="StarsPerformanceSwitcher" method="_on_StartMeasuringTimer_timeout"]
