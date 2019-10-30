@@ -18,10 +18,17 @@ func _physics_process(delta):
 	var horizontal: int = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))
 # warning-ignore:unused_variable
 	var vertical: int = int(Input.is_action_pressed("g_up")) - int(Input.is_action_pressed("g_down"))
+	var horizontal_fire: int = int(Input.is_action_just_pressed("g_fire_right")) - int(Input.is_action_just_pressed("g_fire_left"))
+	var vertical_fire: int = int(Input.is_action_just_pressed("g_fire_down")) - int(Input.is_action_just_pressed("g_fire_up"))
 #	var dash: int = int(Input.is_action_just_pressed("g_dash_right")) - int(Input.is_action_just_pressed("g_dash_left"))
 	
-	if Input.is_action_just_pressed("g_fire") and player_state.can_fire_bullet():
-		$BulletSpawner.spawn_bullet(global_position.angle_to_point(get_global_mouse_position()) + PI)
+	if player_state.can_fire_bullet() and (abs(horizontal_fire) > 0 or abs(vertical_fire) > 0):
+		
+
+		var rotation_vector: Vector2 = Vector2(horizontal_fire, vertical_fire)
+		var rotation_input: float = rotation_vector.angle()
+
+		$BulletSpawner.spawn_bullet(rotation + rotation_input)
 		$FireStreamPlayer.play()
 		player_state.fire_bullet()
 	
