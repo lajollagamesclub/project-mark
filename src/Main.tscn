@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://StarsPerformanceSwitcher.gd" type="Script" id=2]
-[ext_resource path="res://StarryBackground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://StarryBackground.shader" type="Shader" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://StarryBackground.tscn" type="PackedScene" id=6]
 [ext_resource path="res://AsteroidSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Asteroid.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=9]
@@ -44,16 +44,16 @@ visible = false
 [node name="HighPerformanceStars" type="Node2D" parent="StarsPerformanceSwitcher"]
 visible = false
 
-[node name="StarryBackground" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
+[node name="StarryBackground" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 6 )]
 parallax_scale = 0.7
 
-[node name="StarryBackground2" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
+[node name="StarryBackground2" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 6 )]
 material = SubResource( 1 )
 relative_motion = 1.2
 parallax_scale = 0.5
 offset = Vector2( 800, 300 )
 
-[node name="StarryBackground3" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
+[node name="StarryBackground3" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 6 )]
 material = SubResource( 2 )
 relative_motion = 1.4
 parallax_scale = 0.3
@@ -68,7 +68,7 @@ modulate = Color( 0.803922, 0.211765, 0.211765, 1 )
 position = Vector2( 669.179, 90.1779 )
 texture = ExtResource( 5 )
 
-[node name="Player" parent="." instance=ExtResource( 6 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 7 )]
 show_spawn_visually = false
