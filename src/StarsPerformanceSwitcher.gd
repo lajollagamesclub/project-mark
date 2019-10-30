@@ -14,7 +14,7 @@ func _process(delta):
 	cur_fps_measuring_counter += delta
 	fps_measurements += 1
 	cur_fps_average += Engine.get_frames_per_second()
-	print(Engine.get_frames_per_second(), "	", cur_fps_average, "	", fps_measurements)
+	# print(Engine.get_frames_per_second(), "	", cur_fps_average, "	", fps_measurements)
 #	print(cur_fps_average/float(fps_measurements))
 	if cur_fps_measuring_counter >= 1.0:
 		
