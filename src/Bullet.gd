@@ -4,6 +4,10 @@ extends Area2D
 export var size: Vector2 = Vector2(10, 10) setget set_size
 export var speed: float = 700.0
 
+func _ready():
+	if Engine.editor_hint:
+		set_process(false)
+
 func _process(delta):
 	global_position += Vector2(speed, 0).rotated(rotation)*delta
 

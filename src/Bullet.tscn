@@ -6,7 +6,6 @@
 extents = Vector2( 46, 6 )
 
 [node name="Bullet" type="Area2D"]
-position = Vector2( 131827, 0 )
 script = ExtResource( 1 )
 size = Vector2( 46, 6 )
 speed = 1800.0
