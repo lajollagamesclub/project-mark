@@ -27,8 +27,12 @@ func _physics_process(delta):
 
 		var rotation_vector: Vector2 = Vector2(horizontal_fire, vertical_fire)
 		var rotation_input: float = rotation_vector.angle()
+		rotation_input = rotation + rotation_input
+		
+		var input_vector = Vector2(1, 0).rotated(rotation_input)
 
-		$BulletSpawner.spawn_bullet(rotation + rotation_input)
+		rotation_input = $AutoAim.get_suggestion(input_vector, 45.0)
+		$BulletSpawner.spawn_bullet(rotation_input)
 		$FireStreamPlayer.play()
 		player_state.fire_bullet()
 	
