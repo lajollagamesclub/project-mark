@@ -27,7 +27,7 @@ func _physics_process(delta):
 
 		var rotation_vector: Vector2 = Vector2(horizontal_fire, vertical_fire)
 		var rotation_input: float = rotation_vector.angle()
-		rotation_input = rotation + rotation_input
+		rotation_input = rotation_input
 		
 		var input_vector = Vector2(1, 0).rotated(rotation_input)
 
