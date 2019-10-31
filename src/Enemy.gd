@@ -12,7 +12,7 @@ func _physics_process(delta):
 	look_at(player_node.global_position)
 	# move_and_slide( Vector2 linear_velocity, Vector2 floor_normal=Vector2( 0, 0 ), bool stop_on_slope=false, int max_slides=4, float floor_max_angle=0.785398, bool infinite_inertia=tru
 	
-	var velocity: Vector2 = Vector2(800, 0).rotated(rotation)
+	var velocity: Vector2 = Vector2(700, 0).rotated(rotation)
 	
 	move_and_slide(velocity, Vector2(), false, 4, 0.78, false)
 

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const player_state = preload("res://player_state.tres")
 
-export var movement_speed = 700.0
+export var movement_speed = 600.0
 export var rotational_speed = 360.0
 
 func _process(delta):
