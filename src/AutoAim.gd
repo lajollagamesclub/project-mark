@@ -12,24 +12,34 @@ func get_suggestion(cur_vector: Vector2, toleration: float) -> float:
 	toleration = deg2rad(toleration)
 	
 	var tolerated_vector = cur_vector.rotated(toleration)
-	var tolerated_dot_product = 1 - tolerated_vector.dot(cur_vector)
+	var tolerated_dot_product = 1 - abs(tolerated_vector.dot(cur_vector))
 	
 	print(tolerated_dot_product)
 
-	for n in get_overlapping_bodies():
+	var sorted_by_distance: Array = get_overlapping_bodies()
+	sorted_by_distance.sort_custom(self, "sort_by_distance")
+	for n in sorted_by_distance:
 		if n.is_in_group("targetable"):
 			var to_n_vector: Vector2 = n.global_position - global_position
 			to_n_vector = to_n_vector.normalized()
-			var dot_to_target = to_n_vector.dot(cur_vector)
+			last_target_vector = to_n_vector
+			var dot_to_target = 1 - abs(max(0,to_n_vector.dot(cur_vector)))
+			print(dot_to_target)
 			if abs(dot_to_target) < tolerated_dot_product:
-				last_target_vector = to_n_vector
+#				last_target_vector = to_n_vector
 				return to_n_vector.angle()
 	
 	return cur_vector.angle()
+
+func sort_by_distance(first_node: Node2D, second_node: Node2D):
+	var first_distance: float = (first_node.global_position - global_position).length()
+	var second_distance: float = (second_node.global_position - global_position).length()
+
+	return first_distance < second_distance
 
 func _process(delta):
 	update()
 
 func _draw():
 	draw_line(Vector2(),to_local(global_position + last_input_vector*3000.0), Color(1, 0, 0, 0.5), 10)
-#	draw_line(Vector2(), last_target_vector*3000.0, Color(0, 1, 0, 0.5), 10.0)
+	draw_line(Vector2(), to_local(global_position + last_target_vector*3000.0), Color(0, 1, 0, 0.5), 10.0)
