@@ -11,8 +11,7 @@ func set_fuel(new_fuel):
 	emit_signal("fuel_changed", fuel)
 
 func can_fire_bullet():
-	return true
-#	return fuel > 5
+	return fuel > 5
 
 func fire_bullet():
 	self.fuel -= 5
