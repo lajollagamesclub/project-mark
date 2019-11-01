@@ -115,7 +115,14 @@ script = ExtResource( 11 )
 [node name="CurTimeLabel" type="Label" parent="UI"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -14.0
-margin_right = 40.0
+margin_top = -170.0
+margin_right = 392.0
+margin_bottom = 2.0
+theme = ExtResource( 10 )
+text = "Time"
+valign = 2
 script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="StartMeasuringTimer" to="StarsPerformanceSwitcher" method="_on_StartMeasuringTimer_timeout"]
