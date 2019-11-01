@@ -1,11 +1,13 @@
 extends KinematicBody2D
 
 const player_state = preload("res://player_state.tres")
+const game_state = preload("res://game_state.tres")
 
 export var movement_speed = 600.0
 export var rotational_speed = 360.0
 
 func _process(delta):
+	game_state.distance = global_position.distance_to(Vector2())
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
 		var tapped = asteroid.tap_resource(delta)
 		if tapped and not is_on_wall():

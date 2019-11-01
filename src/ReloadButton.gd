@@ -10,5 +10,5 @@ func _on_ReloadButton_pressed():
 	reload()
 
 func reload():
-	game_state.time = 0.0
+	game_state.reset_distance()
 	get_tree().change_scene("res://Main.tscn")

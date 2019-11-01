@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://StarsPerformanceSwitcher.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://theme.tres" type="Theme" id=10]
 [ext_resource path="res://ProgressBar.gd" type="Script" id=11]
 [ext_resource path="res://CurTimeLabel.gd" type="Script" id=12]
+[ext_resource path="res://pc-senior/pcsenior.ttf" type="DynamicFontData" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -26,6 +27,10 @@ shader_param/global_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 shader_param/offset = Vector2( 1500, 700 )
 shader_param/relative_motion = 1.4
 shader_param/star_size = 2.7
+
+[sub_resource type="DynamicFont" id=3]
+size = 36
+font_data = ExtResource( 13 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -105,22 +110,26 @@ valign = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="UI"]
 modulate = Color( 1, 1, 1, 0.501961 )
+anchor_top = 1.0
 anchor_right = 1.0
-margin_bottom = 69.0
+anchor_bottom = 1.0
+margin_top = -89.0
 theme = ExtResource( 10 )
 value = 50.0
 percent_visible = false
 script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CurTimeLabel" type="Label" parent="UI"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -170.0
-margin_right = 392.0
-margin_bottom = 2.0
+[node name="CurDistanceLabel" type="Label" parent="UI"]
+anchor_right = 1.0
+margin_bottom = 176.0
 theme = ExtResource( 10 )
+custom_fonts/font = SubResource( 3 )
 text = "Time"
-valign = 2
+align = 1
+valign = 1
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
