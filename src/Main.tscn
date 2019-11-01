@@ -2,17 +2,17 @@
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://StarsPerformanceSwitcher.gd" type="Script" id=2]
-[ext_resource path="res://AsteroidSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://StarryBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://StarryBackground.shader" type="Shader" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
-[ext_resource path="res://StarryBackground.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://AsteroidSpawner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Asteroid.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://theme.tres" type="Theme" id=10]
 [ext_resource path="res://ProgressBar.gd" type="Script" id=11]
-[ext_resource path="res://CurTimeLabel.gd" type="Script" id=12]
-[ext_resource path="res://pc-senior/pcsenior.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://pc-senior/pcsenior.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://CurTimeLabel.gd" type="Script" id=13]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -30,7 +30,7 @@ shader_param/star_size = 2.7
 
 [sub_resource type="DynamicFont" id=3]
 size = 36
-font_data = ExtResource( 13 )
+font_data = ExtResource( 12 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,16 +49,18 @@ visible = false
 [node name="HighPerformanceStars" type="Node2D" parent="StarsPerformanceSwitcher"]
 visible = false
 
-[node name="StarryBackground" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 6 )]
+[node name="StarryBackground" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
+relative_motion = 1.0
 parallax_scale = 0.7
+offset = Vector2( 0, 0 )
 
-[node name="StarryBackground2" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 6 )]
+[node name="StarryBackground2" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 material = SubResource( 1 )
 relative_motion = 1.2
 parallax_scale = 0.5
 offset = Vector2( 800, 300 )
 
-[node name="StarryBackground3" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 6 )]
+[node name="StarryBackground3" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 material = SubResource( 2 )
 relative_motion = 1.4
 parallax_scale = 0.3
@@ -73,14 +75,14 @@ modulate = Color( 0.803922, 0.211765, 0.211765, 1 )
 position = Vector2( 669.179, 90.1779 )
 texture = ExtResource( 5 )
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
+[node name="Player" parent="." instance=ExtResource( 6 )]
 
-[node name="AsteroidSpawner" parent="." instance=ExtResource( 3 )]
+[node name="AsteroidSpawner" parent="." instance=ExtResource( 7 )]
 show_spawn_visually = false
 safe_radius = 0.0
 to_spawn_pack = ExtResource( 8 )
 
-[node name="FollowerSpawner" parent="." instance=ExtResource( 3 )]
+[node name="FollowerSpawner" parent="." instance=ExtResource( 7 )]
 show_spawn_visually = false
 safe_radius = 5.0
 target_enemies = 5
@@ -130,7 +132,7 @@ custom_fonts/font = SubResource( 3 )
 text = "Time"
 align = 1
 valign = 1
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
