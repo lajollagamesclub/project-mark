@@ -122,6 +122,13 @@ Made by la jolla games club"
 align = 1
 valign = 1
 
+[node name="SaveScoreButton" type="Button" parent="."]
+margin_left = -65.0
+margin_top = 39.97
+margin_right = 66.0
+margin_bottom = 59.97
+text = "Click to save score"
+
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Bullets" type="Node2D" parent="."]
@@ -172,3 +179,4 @@ __meta__ = {
 }
 [connection signal="tree_exiting" from="." to="." method="_on_Main_tree_exiting"]
 [connection signal="timeout" from="StartMeasuringTimer" to="StarsPerformanceSwitcher" method="_on_StartMeasuringTimer_timeout"]
+[connection signal="pressed" from="SaveScoreButton" to="." method="_on_SaveScoreButton_pressed"]
