@@ -25,7 +25,7 @@ func _on_Main_tree_exiting():
 func save_score():
 	var distance_file = File.new()
 	distance_file.open(distance_filename, File.WRITE)
-#	distance_file.store_string(str(game_state.distance))
+	distance_file.store_string(str(game_state.distance))
 	distance_file.close()
 
 func _on_SaveScoreButton_pressed():
