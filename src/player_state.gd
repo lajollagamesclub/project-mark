@@ -17,7 +17,11 @@ func set_health(new_health):
 	if new_health > 100:
 		return
 	if new_health <= 0:
-		tree.change_scene("res://GameOver.tscn")
+		tree.change_scene("res://Main.tscn")
+		health = 100
+		fuel = 100
+		emit_signal("health_changed", health)
+		return
 	health = new_health
 	emit_signal("health_changed", health)
 

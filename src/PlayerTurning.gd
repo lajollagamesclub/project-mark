@@ -6,6 +6,15 @@ const game_state = preload("res://game_state.tres")
 export var movement_speed = 600.0
 export var rotational_speed = 360.0
 
+func _ready():
+	set_physics_process(false)
+	set_process(false)
+
+func _input(event):
+	if event.is_action_pressed("g_start"):
+		set_process(true)
+		set_physics_process(true)
+
 func _process(delta):
 	game_state.distance = global_position.distance_to(Vector2())
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
