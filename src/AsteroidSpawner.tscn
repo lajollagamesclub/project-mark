@@ -1,11 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://EnemySpawner.gd" type="Script" id=1]
+[ext_resource path="res://AsteroidSpawner.gd" type="Script" id=1]
 
 [node name="AsteroidSpawner" type="Node2D"]
 script = ExtResource( 1 )
-safe_radius = 800.0
-camera_view_radius = 1920.0
-player_visibility_radius = 3000.0
-target_enemies = 75
-player_path = NodePath("../Player")

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal dead
 
-var despawn_distance: float = 500.0
+var despawn_distance: float = 8000.0
 var player_node: Node2D
 
 func _physics_process(delta):
