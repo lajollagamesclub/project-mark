@@ -2,6 +2,9 @@ extends KinematicBody2D
 
 signal dead
 
+const player_state = preload("res://player_state.tres")
+const damage = 10.0
+
 var despawn_distance: float = 8000.0
 var player_node: Node2D
 
@@ -19,7 +22,9 @@ func _physics_process(delta):
 	for c in range(get_slide_count()):
 		var collision = get_slide_collision(c)
 		if collision.collider.is_in_group("player"):
-			get_tree().change_scene("res://GameOver.tscn")
+			player_state.health -= damage
+			queue_free()
+#			get_tree().change_scene("res://GameOver.tscn")
 
 func hit():
 	queue_free()
