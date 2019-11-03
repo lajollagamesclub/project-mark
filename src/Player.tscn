@@ -8,7 +8,7 @@
 [ext_resource path="res://AutoAim.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 171.606
+radius = 234.117
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",

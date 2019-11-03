@@ -21,7 +21,11 @@ func _process(delta):
 		var tapped = asteroid.tap_resource(delta)
 		if tapped and not is_on_wall():
 			var asteroid_distance: float = global_position.distance_to(asteroid.global_position)/$AsteroidVisualizations/CollisionShape2D.shape.radius
-			player_state.fuel += lerp(0.0, 10.0, asteroid_distance)*delta
+
+			if player_state.fuel >= 99.9:
+				player_state.health += lerp(0.0, 3.0, asteroid_distance)*delta
+			else:
+				player_state.fuel += lerp(0.0, 10.0, asteroid_distance)*delta
 	if is_on_wall():
 		player_state.fuel -= 100.0*delta
 

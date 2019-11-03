@@ -1,5 +1,7 @@
 extends Area2D
 
+const player_state = preload("res://player_state.tres")
+
 export var attaching_group = "asteroids"
 
 var number_of_attached: int = 0 setget ,get_number_of_attached
@@ -11,7 +13,11 @@ func _draw():
 	for b in get_bodies_in_group():
 		var line_vector: Vector2 = to_local(b.global_position)
 		var closeness_fraction: float = 1.2 - line_vector.length()/$CollisionShape2D.shape.radius
-		draw_line(Vector2(), line_vector, Color(1, 0, 0, closeness_fraction), lerp(1.0, 20.0, closeness_fraction))
+		var line_color: Color = Color(1, 0, 0)
+		if player_state.fuel >= 99.0:
+			line_color = Color(0, 1, 0)
+		line_color.a = closeness_fraction
+		draw_line(Vector2(), line_vector, line_color, lerp(1.0, 20.0, closeness_fraction))
 
 func get_number_of_attached() -> int:
 	return get_bodies_in_group().size()
