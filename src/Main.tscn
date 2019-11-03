@@ -32,9 +32,9 @@ shader_param/relative_motion = 1.4
 shader_param/star_size = 2.7
 
 [sub_resource type="Curve" id=3]
-min_value = 0.5
+min_value = 0.1
 max_value = 3.0
-_data = [ Vector2( 0, 1.596 ), 0.0, -4.44595, 0, 0, Vector2( 0.764633, 0.87 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.5 ), -1.11846, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 3 ), 0.0, -4.44595, 0, 0, Vector2( 0.487893, 0.1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.1 ), -1.11846, 0.0, 0, 0 ]
 
 [sub_resource type="DynamicFont" id=4]
 size = 36
