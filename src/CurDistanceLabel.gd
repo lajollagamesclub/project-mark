@@ -6,4 +6,4 @@ func _ready():
 	game_state.cur_distance = 0
 
 func _process(delta):
-	text = str(game_state.cur_distance)
+	text = str(round(game_state.cur_distance))
