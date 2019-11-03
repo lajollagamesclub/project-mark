@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://StarsPerformanceSwitcher.gd" type="Script" id=2]
@@ -13,9 +13,10 @@
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=11]
 [ext_resource path="res://theme.tres" type="Theme" id=12]
 [ext_resource path="res://pc-senior/pcsenior.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://CurTimeLabel.gd" type="Script" id=14]
-[ext_resource path="res://HealthBar.gd" type="Script" id=15]
-[ext_resource path="res://ProgressBar.gd" type="Script" id=16]
+[ext_resource path="res://MaxDistanceLabel.gd" type="Script" id=14]
+[ext_resource path="res://CurDistanceLabel.gd" type="Script" id=15]
+[ext_resource path="res://HealthBar.gd" type="Script" id=16]
+[ext_resource path="res://ProgressBar.gd" type="Script" id=17]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -135,15 +136,35 @@ text = "Click to save score"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="CurDistanceLabel" type="Label" parent="UI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
 anchor_right = 1.0
-margin_bottom = 168.0
+margin_bottom = 283.0
+
+[node name="MaxDistanceLabel" type="Label" parent="UI/VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 139.0
+size_flags_vertical = 3
 theme = ExtResource( 12 )
 custom_fonts/font = SubResource( 4 )
-text = "Time"
+text = "Max Distance"
 align = 1
 valign = 1
 script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurDistanceLabel" type="Label" parent="UI/VBoxContainer"]
+margin_top = 143.0
+margin_right = 1920.0
+margin_bottom = 283.0
+size_flags_vertical = 3
+theme = ExtResource( 12 )
+custom_fonts/font = SubResource( 4 )
+text = "Current Distance"
+align = 1
+valign = 1
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -162,7 +183,7 @@ margin_bottom = 30.0
 size_flags_vertical = 3
 value = 50.0
 percent_visible = false
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 
 [node name="AmmoBar" type="ProgressBar" parent="UI/Bars"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -173,7 +194,7 @@ size_flags_vertical = 3
 theme = ExtResource( 12 )
 value = 50.0
 percent_visible = false
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

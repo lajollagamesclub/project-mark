@@ -11,7 +11,7 @@ func _ready():
 	var distance_file = File.new()
 	if distance_file.file_exists(distance_filename):
 		distance_file.open(distance_filename, File.READ)
-		game_state.distance = int(distance_file.get_as_text())
+		game_state.max_distance = int(distance_file.get_as_text())
 	distance_file.close()
 
 func _input(event):
@@ -25,7 +25,7 @@ func _on_Main_tree_exiting():
 func save_score():
 	var distance_file = File.new()
 	distance_file.open(distance_filename, File.WRITE)
-	distance_file.store_string(str(game_state.distance))
+	distance_file.store_string(str(game_state.max_distance))
 	distance_file.close()
 
 func _on_SaveScoreButton_pressed():

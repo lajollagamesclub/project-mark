@@ -20,9 +20,9 @@ func _process(delta):
 	if cur_time > cur_max_time:
 		cur_time = 0.0
 		spawn_enemy()
-		var cur_distance_fraction: float = min(1.0, game_state.distance/max_distance)
-		cur_max_time = spawn_time_curve.interpolate(1.0 - cur_distance_fraction)
-		print(cur_max_time)
+		var cur_distance_fraction: float = min(1.0, game_state.cur_distance/max_distance)
+		cur_max_time = spawn_time_curve.interpolate(cur_distance_fraction)
+#		print(cur_max_time)
 
 func spawn_enemy():
 	var cur_enemy = enemy_pack.instance()

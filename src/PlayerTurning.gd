@@ -16,7 +16,7 @@ func _input(event):
 		set_physics_process(true)
 
 func _process(delta):
-	game_state.distance = global_position.distance_to(Vector2())
+	game_state.cur_distance = global_position.distance_to(Vector2())
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
 		var tapped = asteroid.tap_resource(delta)
 		if tapped and not is_on_wall():
