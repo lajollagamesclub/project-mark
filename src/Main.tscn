@@ -93,6 +93,7 @@ texture = ExtResource( 6 )
 [node name="Player" parent="." instance=ExtResource( 7 )]
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 8 )]
+show_spawn_visually = false
 safe_radius = 800.0
 camera_view_radius = 1920.0
 player_visibility_radius = 3000.0
