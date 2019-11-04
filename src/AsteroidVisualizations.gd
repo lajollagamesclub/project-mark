@@ -13,9 +13,9 @@ func _draw():
 	for b in get_bodies_in_group():
 		var line_vector: Vector2 = to_local(b.global_position)
 		var closeness_fraction: float = 1.2 - line_vector.length()/$CollisionShape2D.shape.radius
-		var line_color: Color = Color(1, 0, 0)
+		var line_color: Color = Color(1, 1, 1)
 		if player_state.fuel >= 99.0:
-			line_color = Color(0, 1, 0)
+			line_color = Color("#60c1cc")
 		line_color.a = closeness_fraction
 		draw_line(Vector2(), line_vector, line_color, lerp(1.0, 20.0, closeness_fraction))
 

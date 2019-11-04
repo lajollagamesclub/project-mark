@@ -197,7 +197,7 @@ margin_top = -64.0
 theme = ExtResource( 11 )
 
 [node name="HealthBar" type="ProgressBar" parent="UI/Bars"]
-modulate = Color( 0.690196, 1, 0.564706, 0.501961 )
+modulate = Color( 0.376471, 0.756863, 0.8, 0.501961 )
 margin_right = 1920.0
 margin_bottom = 30.0
 size_flags_vertical = 3
