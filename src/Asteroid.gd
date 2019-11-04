@@ -9,6 +9,14 @@ var despawn_distance: float = 500.0
 var player_node: Node2D
 var resource_amount: float = 1.0 setget set_resource_amount
 
+
+func _ready():
+	if Engine.editor_hint:
+		set_physics_process(false)
+		set_process(false)
+	else:
+		$Sprite.rotation = rand_range(0, 2*PI)
+
 func set_resource_amount(new_resource_amount):
 	resource_amount = new_resource_amount
 	modulate = lerp(Color(0, 0, 0), Color(1, 1, 1), resource_amount)
@@ -23,10 +31,6 @@ func set_size(new_size):
 		$ColorRect.rect_position = -size_vector/2
 		$CollisionShape2D.shape.extents = size_vector/2
 
-func _ready():
-	if Engine.editor_hint:
-		set_physics_process(false)
-		set_process(false)
 
 func _process(delta):
 	if resource_amount < 1.0:

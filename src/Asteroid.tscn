@@ -1,12 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Asteroid.gd" type="Script" id=1]
+[ext_resource path="res://asteroid.png" type="Texture" id=2]
 
 [sub_resource type="PhysicsMaterial" id=1]
 bounce = 0.3
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 30, 30 )
 
 [node name="Asteroid" type="RigidBody2D" groups=[
 "asteroids",
@@ -17,6 +15,7 @@ script = ExtResource( 1 )
 size = 60
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -30.0
@@ -25,5 +24,9 @@ margin_right = 30.0
 margin_bottom = 30.0
 color = Color( 1, 0.262745, 0.262745, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -10.7804, -17.8501, -22.168, -7.63051, -6.98454, 23.9044, 27.1783, 9.0129, 28.0542, -9.96642, 10.5348, -25.4419 )
