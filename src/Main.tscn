@@ -24,6 +24,7 @@ shader_param/global_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 shader_param/offset = Vector2( 800, 300 )
 shader_param/relative_motion = 1.2
 shader_param/star_size = 2.7
+shader_param/density = 3.0
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 4 )
@@ -31,6 +32,7 @@ shader_param/global_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 shader_param/offset = Vector2( 1500, 700 )
 shader_param/relative_motion = 1.4
 shader_param/star_size = 2.7
+shader_param/density = 3.0
 
 [sub_resource type="Curve" id=3]
 min_value = 0.1
@@ -63,9 +65,7 @@ visible = false
 visible = false
 
 [node name="StarryBackground" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
-relative_motion = 1.0
 parallax_scale = 0.7
-offset = Vector2( 0, 0 )
 
 [node name="StarryBackground2" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 material = SubResource( 1 )

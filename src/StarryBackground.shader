@@ -5,6 +5,7 @@ uniform mat4 global_transform;
 uniform vec2 offset = vec2(0.0);
 uniform float relative_motion = 1.0;
 uniform float star_size = 1.0;
+uniform float density = 1.0;
 
 // Dave Hoskins hash functions
 vec4 hash42(vec2 p)
@@ -43,35 +44,35 @@ vec3 StarFieldLayer(vec2 p, float du, float count, float brightness, float size)
 	
     // Tiling:
     vec2 pi;
-    du *= count;    p *= count;
+    du *= count/density;    p *= count/density;
     pi  = floor(p); p  = fract(p)-0.5;
   
     // Randomize position, brightness and spectrum:
     vec4 h = hash42(pi);
 
     // Resolution independent radius:
-    float s = brightness*(0.7+0.6*h.z)*smoothstep(0.8*du, -0.2*du, length(p+0.9*h.xy) - size*du);
+    float s = step(0.3, brightness*(0.7+0.6*h.z)*smoothstep(0.8*du, -0.2*du, length(p+0.9*h.xy) - size*du));
 
-    return s*mix(mix(vec3(1.), cold, min(1.,-2.*h.w)), hot, max(0.,2.*h.w));
+    return s*vec3(1.0);
 }
 
 vec3 StarField(vec2 p, float du)
 {
     vec3 c;
-    c  = StarFieldLayer(p, du, 25.0, 0.18, 0.5); 
-    c += StarFieldLayer(p, du, 15.0, 0.25, 0.5); 
-    c += StarFieldLayer(p, du, 12.0, 0.50, 0.5); 
+//    c  = StarFieldLayer(p, du, 25.0, 1.0, 0.5); 
+//    c += StarFieldLayer(p, du, 15.0, 1.0, 0.5); 
+    c += StarFieldLayer(p, du, 12.0, 1.0, 0.5); 
     c += StarFieldLayer(p, du,  5.0, 1.00, 0.5); 
     c += StarFieldLayer(p, du,  3.0, 1.00, 0.9); 
 
     // Cluster:
     float s = 3.5*(max(0.2, Gradient2D(2.0*p*vec2(1.2,1.9)))-0.2)/(1.0-0.2);
-    c += s*StarFieldLayer(p, du, 160.0, 0.10, 0.5); 
-    c += s*StarFieldLayer(p, du,  80.0, 0.15, 0.5); 
-    c += s*StarFieldLayer(p, du,  40.0, 0.25, 0.5); 
-    c += s*StarFieldLayer(p, du,  30.0, 0.50, 0.5); 
-    c += s*StarFieldLayer(p, du,  20.0, 1.00, 0.5); 
-    c += s*StarFieldLayer(p, du,  10.0, 1.00, 0.9); 
+//    c += s*StarFieldLayer(p, du, 160.0, 1.0, 0.5); 
+//    c += s*StarFieldLayer(p, du,  80.0, 1.0, 0.5); 
+    c += s*StarFieldLayer(p, du,  40.0, 1.0, 0.5); 
+//    c += s*StarFieldLayer(p, du,  30.0, 1.0, 0.5); 
+//    c += s*StarFieldLayer(p, du,  20.0, 1.00, 0.5); 
+//    c += s*StarFieldLayer(p, du,  10.0, 1.00, 0.9); 
 
     c *= 1.3;
     

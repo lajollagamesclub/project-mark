@@ -9,6 +9,7 @@ shader_param/global_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 shader_param/offset = Vector2( 0, 0 )
 shader_param/relative_motion = 1.0
 shader_param/star_size = 2.7
+shader_param/density = 3.0
 
 [node name="StarryBackground" type="Node2D"]
 material = SubResource( 1 )
