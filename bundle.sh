@@ -22,6 +22,7 @@ if [ "$?" == "0" ]; then
 	mv Project\ Mark Project\ Mark.zip
 	unzip "Project Mark.zip"
 	butler push Project\ Mark.app lajollagamesclub/project-mark:mac 
+	cd -
 fi
 
 mv tmp.tres /home/creikey/.config/godot/editor_settings-3.tres
