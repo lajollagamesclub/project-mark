@@ -118,6 +118,7 @@ margin_bottom = -17.0
 theme = ExtResource( 11 )
 text = "Use A and D to turn
 Use arrow keys to shoot
+Use space to dash
 
 Press space to launch"
 align = 1

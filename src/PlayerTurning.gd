@@ -3,8 +3,17 @@ extends KinematicBody2D
 const player_state = preload("res://player_state.tres")
 const game_state = preload("res://game_state.tres")
 
-export var movement_speed = 600.0
-export var rotational_speed = 360.0
+const dash_time = 0.5
+const dash_cooldown_time = 3.0
+const dash_speed = 1500.0
+const movement_speed = 600.0
+const rotational_speed = 360.0
+
+
+var dashing: bool = false
+onready var cur_speed: float = movement_speed
+var cur_dash_time: float = 0.0
+var cur_dash_cooldown_time: float = 0.0
 
 func _ready():
 	set_physics_process(false)
@@ -17,6 +26,7 @@ func _input(event):
 
 func _process(delta):
 	game_state.cur_distance = global_position.distance_to(Vector2())
+	cur_dash_cooldown_time += delta
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
 		var tapped = asteroid.tap_resource(delta)
 		if tapped and not is_on_wall():
@@ -28,6 +38,26 @@ func _process(delta):
 				player_state.fuel += lerp(0.0, 10.0, asteroid_distance)*delta
 	if is_on_wall():
 		player_state.fuel -= 100.0*delta
+		
+	$Sprite.modulate.a = lerp(0.2, 1.0, min(cur_dash_cooldown_time,dash_cooldown_time)/dash_cooldown_time)
+
+	if dashing:
+		cur_dash_cooldown_time = 0.0
+		cur_dash_time += delta
+		
+		if cur_dash_time > dash_time:
+			$CollisionPolygon2D.disabled = false
+			cur_dash_time = 0.0
+			cur_dash_cooldown_time = 0.0
+			cur_speed = movement_speed
+			dashing = false
+
+#	print(cur_dash_cooldown_time >= dash_cooldown_time)
+	if Input.is_action_just_pressed("g_dash") and not dashing and cur_dash_cooldown_time >= dash_cooldown_time:
+		$CollisionPolygon2D.disabled = true
+		cur_speed = dash_speed
+		$Sprite.modulate.a = 0.5
+		dashing = true
 
 func _physics_process(delta):
 	var horizontal: int = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))
@@ -54,4 +84,4 @@ func _physics_process(delta):
 	rotation += float(horizontal)*deg2rad(rotational_speed)*delta
 	# Vector2 move_and_slide( Vector2 linear_velocity, Vector2 floor_normal=Vector2( 0, 0 ), bool stop_on_slope=false, int max_slides=4, float floor_max_angle=0.785398, bool infinite_inertia=true )
 # warning-ignore:return_value_discarded
-	move_and_slide(Vector2(0, -movement_speed).rotated(rotation), Vector2(), false, 1, 0.7, false)
+	move_and_slide(Vector2(0, -cur_speed).rotated(rotation), Vector2(), false, 1, 0.7, false)
