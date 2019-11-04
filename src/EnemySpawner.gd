@@ -5,7 +5,7 @@ const game_state = preload("res://game_state.tres")
 export (NodePath) var player_path: NodePath = ""
 export (PackedScene) var enemy_pack
 export (Curve) var spawn_time_curve: Curve
-export var max_distance = 50000 # will stop scaling difficulty
+export (float) var max_distance: float = 50000 # will stop scaling difficulty
 
 var cur_time: float = 0.0
 
@@ -20,7 +20,7 @@ func _process(delta):
 	if cur_time > cur_max_time:
 		cur_time = 0.0
 		spawn_enemy()
-		var cur_distance_fraction: float = min(1.0, game_state.cur_distance/max_distance)
+		var cur_distance_fraction: float = min(1.0, float(game_state.cur_distance)/max_distance)
 		cur_max_time = spawn_time_curve.interpolate(cur_distance_fraction)
 #		print(cur_max_time)
 

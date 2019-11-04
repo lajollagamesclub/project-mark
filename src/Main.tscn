@@ -6,12 +6,12 @@
 [ext_resource path="res://StarryBackground.shader" type="Shader" id=4]
 [ext_resource path="res://Base.tscn" type="PackedScene" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://AsteroidSpawner.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Asteroid.tscn" type="PackedScene" id=9]
-[ext_resource path="res://EnemySpawner.gd" type="Script" id=10]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=11]
-[ext_resource path="res://theme.tres" type="Theme" id=12]
+[ext_resource path="res://AsteroidSpawner.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Asteroid.tscn" type="PackedScene" id=8]
+[ext_resource path="res://EnemySpawner.gd" type="Script" id=9]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=10]
+[ext_resource path="res://theme.tres" type="Theme" id=11]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=12]
 [ext_resource path="res://pc-senior/pcsenior.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://CurDistanceLabel.gd" type="Script" id=14]
 [ext_resource path="res://MaxDistanceLabel.gd" type="Script" id=15]
@@ -35,9 +35,9 @@ shader_param/star_size = 2.7
 shader_param/density = 3.0
 
 [sub_resource type="Curve" id=3]
-min_value = 0.1
+min_value = 0.2
 max_value = 3.0
-_data = [ Vector2( 0, 3 ), 0.0, -4.44595, 0, 0, Vector2( 0.487893, 0.1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.1 ), -1.11846, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 3 ), 0.0, -4.44595, 0, 0, Vector2( 0.432544, 1.64928 ), 0.0, 0.0, 0, 0, Vector2( 0.788848, 0.81152 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.6144 ), -1.11846, 0.0, 0, 0 ]
 
 [sub_resource type="DynamicFont" id=4]
 size = 36
@@ -65,7 +65,9 @@ visible = false
 visible = false
 
 [node name="StarryBackground" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
+relative_motion = 1.0
 parallax_scale = 0.7
+offset = Vector2( 0, 0 )
 
 [node name="StarryBackground2" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 visible = false
@@ -93,19 +95,19 @@ modulate = Color( 0.803922, 0.211765, 0.211765, 1 )
 position = Vector2( 669.179, 90.1779 )
 texture = ExtResource( 6 )
 
-[node name="AsteroidSpawner" parent="." instance=ExtResource( 8 )]
+[node name="AsteroidSpawner" parent="." instance=ExtResource( 7 )]
 show_spawn_visually = false
 safe_radius = 800.0
 camera_view_radius = 1920.0
 player_visibility_radius = 3000.0
 target_enemies = 75
-to_spawn_pack = ExtResource( 9 )
+to_spawn_pack = ExtResource( 8 )
 player_path = NodePath("../Player")
 
 [node name="EnemySpawner" type="Node2D" parent="."]
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 player_path = NodePath("../Player")
-enemy_pack = ExtResource( 11 )
+enemy_pack = ExtResource( 10 )
 spawn_time_curve = SubResource( 3 )
 
 [node name="InstructionsLabel" type="Label" parent="."]
@@ -113,7 +115,7 @@ margin_left = -184.0
 margin_top = -152.0
 margin_right = 184.0
 margin_bottom = -17.0
-theme = ExtResource( 12 )
+theme = ExtResource( 11 )
 text = "Use A and D to turn
 Use arrow keys to shoot
 
@@ -128,7 +130,7 @@ margin_left = -216.0
 margin_top = 90.0
 margin_right = 216.0
 margin_bottom = 125.0
-theme = ExtResource( 12 )
+theme = ExtResource( 11 )
 text = "Project mark
 Made by la jolla games club"
 align = 1
@@ -144,7 +146,7 @@ margin_right = 66.0
 margin_bottom = 59.97
 text = "Click to save score"
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
+[node name="Player" parent="." instance=ExtResource( 12 )]
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -161,7 +163,7 @@ margin_right = 1920.0
 margin_bottom = 74.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-theme = ExtResource( 12 )
+theme = ExtResource( 11 )
 custom_fonts/font = SubResource( 4 )
 text = "Current Distance"
 align = 1
@@ -177,7 +179,7 @@ margin_top = 78.0
 margin_right = 1920.0
 margin_bottom = 115.0
 size_flags_vertical = 3
-theme = ExtResource( 12 )
+theme = ExtResource( 11 )
 custom_fonts/font = SubResource( 5 )
 text = "Max Distance"
 align = 1
@@ -192,7 +194,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -64.0
-theme = ExtResource( 12 )
+theme = ExtResource( 11 )
 
 [node name="HealthBar" type="ProgressBar" parent="UI/Bars"]
 modulate = Color( 0.690196, 1, 0.564706, 0.501961 )
@@ -209,7 +211,7 @@ margin_top = 34.0
 margin_right = 1920.0
 margin_bottom = 64.0
 size_flags_vertical = 3
-theme = ExtResource( 12 )
+theme = ExtResource( 11 )
 value = 50.0
 percent_visible = false
 script = ExtResource( 17 )

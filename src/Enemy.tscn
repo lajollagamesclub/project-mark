@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Enemy.gd" type="Script" id=1]
 [ext_resource path="res://straggler.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.4559, 21.5163 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "targetable",
@@ -14,5 +17,5 @@ rotation = 1.5708
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( 27.4608, -0.696388, 4.92376, -20.2285, -24.0525, -20.2285, -24.4818, -6.92091, -23.8378, 19.6943, 7.28478, 19.0504 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
