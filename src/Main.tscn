@@ -35,14 +35,14 @@ shader_param/star_size = 2.7
 shader_param/density = 3.0
 
 [sub_resource type="Curve" id=3]
-min_value = 75.0
+min_value = 0.99
 max_value = 300.0
 _data = [ Vector2( 0, 75 ), 0.0, 64.854, 0, 1, Vector2( 0.709285, 121 ), 0.0, 0.0, 0, 0, Vector2( 1, 300 ), 615.724, 0.0, 1, 0 ]
 
 [sub_resource type="Curve" id=4]
 min_value = 0.2
 max_value = 3.0
-_data = [ Vector2( 0, 3 ), 0.0, -4.44595, 0, 0, Vector2( 0.432544, 1.64928 ), 0.0, 0.0, 0, 0, Vector2( 0.843333, 0.6144 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.2 ), -1.11846, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 3 ), 0.0, -4.44595, 0, 0, Vector2( 0.432544, 1.64928 ), 0.0, 0.0, 0, 0, Vector2( 0.788848, 0.81152 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.6144 ), -1.11846, 0.0, 0, 0 ]
 
 [sub_resource type="DynamicFont" id=5]
 size = 36
@@ -70,7 +70,9 @@ visible = false
 visible = false
 
 [node name="StarryBackground" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
+relative_motion = 1.0
 parallax_scale = 0.7
+offset = Vector2( 0, 0 )
 
 [node name="StarryBackground2" parent="StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 visible = false
@@ -99,14 +101,12 @@ position = Vector2( 669.179, 90.1779 )
 texture = ExtResource( 6 )
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 7 )]
-show_spawn_visually = false
 safe_radius = 800.0
 camera_view_radius = 1920.0
 player_visibility_radius = 3000.0
 to_spawn_pack = ExtResource( 8 )
 player_path = NodePath("../Player")
 spawn_time_curve = SubResource( 3 )
-max_distance = 50000.0
 
 [node name="EnemySpawner" type="Node2D" parent="."]
 script = ExtResource( 9 )
