@@ -1,5 +1,5 @@
 tool
-extends RigidBody2D
+extends StaticBody2D
 
 signal dead
 

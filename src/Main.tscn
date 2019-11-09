@@ -129,7 +129,7 @@ theme = ExtResource( 11 )
 text = "Use A and D to turn
 Use arrow keys to shoot
 Use space to dash
-Use p to pause
+Use escape to pause
 
 Press space to launch"
 align = 1
