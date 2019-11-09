@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://StarsPerformanceSwitcher.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://MaxDistanceLabel.gd" type="Script" id=15]
 [ext_resource path="res://HealthBar.gd" type="Script" id=16]
 [ext_resource path="res://ProgressBar.gd" type="Script" id=17]
+[ext_resource path="res://PauseMenu.gd" type="Script" id=18]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -50,6 +51,10 @@ font_data = ExtResource( 13 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 26
+font_data = ExtResource( 13 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 56
 font_data = ExtResource( 13 )
 
 [node name="Main" type="Node2D"]
@@ -124,6 +129,7 @@ theme = ExtResource( 11 )
 text = "Use A and D to turn
 Use arrow keys to shoot
 Use space to dash
+Use p to pause
 
 Press space to launch"
 align = 1
@@ -225,6 +231,41 @@ script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PauseMenu" type="PanelContainer" parent="UI"]
+pause_mode = 2
+visible = false
+modulate = Color( 1, 1, 1, 0.815686 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 11 )
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/PauseMenu"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="PausedLabel" type="Label" parent="UI/PauseMenu/VBoxContainer"]
+margin_right = 1920.0
+margin_bottom = 538.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 7 )
+text = "Paused"
+align = 1
+valign = 1
+
+[node name="InstructionLabel" type="Label" parent="UI/PauseMenu/VBoxContainer"]
+margin_top = 542.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 7 )
+text = "Press p to unpause/pause"
+align = 1
+valign = 1
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
 [connection signal="tree_exiting" from="." to="." method="_on_Main_tree_exiting"]
