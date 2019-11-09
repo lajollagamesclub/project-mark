@@ -50,6 +50,7 @@ func _process(delta):
 		
 		if cur_dash_time > dash_time:
 			$CollisionPolygon2D.disabled = false
+			$AsteroidDestroyer.disabled = false
 			cur_dash_time = 0.0
 			cur_dash_cooldown_time = 0.0
 			target_speed = movement_speed
@@ -58,6 +59,7 @@ func _process(delta):
 #	print(cur_dash_cooldown_time >= dash_cooldown_time)
 	if Input.is_action_just_pressed("g_dash") and not dashing and cur_dash_cooldown_time >= dash_cooldown_time:
 		$CollisionPolygon2D.disabled = true
+		$AsteroidDestroyer.disabled = true
 		target_speed = dash_speed
 		$Sprite.modulate.a = 0.5
 		dashing = true
