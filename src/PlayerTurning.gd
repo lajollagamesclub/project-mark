@@ -15,6 +15,8 @@ onready var cur_speed: float = movement_speed
 var cur_dash_time: float = 0.0
 var cur_dash_cooldown_time: float = 0.0
 
+var is_on_wall: bool = false
+
 func _ready():
 	set_physics_process(false)
 	set_process(false)
@@ -36,7 +38,7 @@ func _process(delta):
 				player_state.health += lerp(0.0, 3.0, asteroid_distance)*delta
 			else:
 				player_state.fuel += lerp(0.0, 10.0, asteroid_distance)*delta
-	if is_on_wall():
+	if is_on_wall:
 		player_state.fuel -= 100.0*delta
 		
 	$Sprite.modulate.a = lerp(0.2, 1.0, min(cur_dash_cooldown_time,dash_cooldown_time)/dash_cooldown_time)
@@ -82,4 +84,7 @@ func _physics_process(delta):
 	
 	rotation += float(horizontal)*deg2rad(rotational_speed)*delta
 	#move_and_slide(Vector2(0, -cur_speed).rotated(rotation), Vector2(), false, 1, 0.7, false)
-	get_node("../World").global_position -= Vector2(0, -cur_speed).rotated(rotation)*delta
+	var movement_vector: Vector2 = Vector2(0, -cur_speed).rotated(rotation)*delta
+	is_on_wall = test_move(global_transform, movement_vector, false)
+	if not is_on_wall:
+		get_node("../World").global_position -= movement_vector
