@@ -1,6 +1,6 @@
 extends Label
 
-const game_state = preload("res://game_state.tres")
+const player_state = preload("res://player_state.tres")
 
 func _ready():
-	text = str("Largest Distance: ", stepify(game_state.distance, 0.01))
+	text = str("Largest Distance: ", stepify(player_state.distance, 0.01))

@@ -1,7 +1,7 @@
 tool
 extends Node2D
 
-const game_state = preload("res://game_state.tres")
+const player_state = preload("res://player_state.tres")
 
 export (bool) var show_spawn_visually = false
 export var safe_radius = 500.0
@@ -43,7 +43,7 @@ func _process(delta):
 			cur_enemy.connect("dead", self, "enemy_died")
 			number_of_enemies += 1
 
-	var cur_distance_fraction: float = min(1.0, float(game_state.cur_distance)/max_distance)
+	var cur_distance_fraction: float = min(1.0, float(player_state.cur_distance)/max_distance)
 	target_enemies = spawn_time_curve.interpolate_baked(cur_distance_fraction)
 
 func enemy_died():

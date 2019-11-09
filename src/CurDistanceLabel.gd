@@ -1,9 +1,9 @@
 extends Label
 
-const game_state = preload("res://game_state.tres")
+const player_state = preload("res://player_state.tres")
 
 func _ready():
-	game_state.cur_distance = 0
+	player_state.cur_distance = 0
 
 func _process(delta):
-	text = str(round(game_state.cur_distance))
+	text = str(round(player_state.cur_distance))

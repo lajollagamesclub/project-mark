@@ -2,10 +2,22 @@ extends Resource
 
 signal fuel_changed(new_fuel)
 signal health_changed(new_health)
+signal moved(move_vector)
 
+# warning-ignore:unused_class_variable
+var max_distance: int = 0 
+var cur_distance: int = 0 setget set_distance
 var fuel: float = 100.0 setget set_fuel
 var health: float = 100.0 setget set_health
 var tree: SceneTree = null
+
+func set_distance(new_distance):
+	cur_distance = new_distance
+	if new_distance > max_distance:
+		max_distance = int(round(new_distance))
+
+func reset_distance():
+	cur_distance = 0
 
 func set_fuel(new_fuel):
 	if new_fuel > 100 or new_fuel < 0:

@@ -1,6 +1,6 @@
 extends Node2D
 
-const game_state = preload("res://game_state.tres")
+const player_state = preload("res://player_state.tres")
 
 export (NodePath) var player_path: NodePath = ""
 export (PackedScene) var enemy_pack
@@ -17,10 +17,10 @@ func _ready():
 
 func _process(delta):
 	cur_time += delta
-	if cur_time > cur_max_time and game_state.cur_distance >= 500.0:
+	if cur_time > cur_max_time and player_state.cur_distance >= 500.0:
 		cur_time = 0.0
 		spawn_enemy()
-		var cur_distance_fraction: float = min(1.0, float(game_state.cur_distance)/max_distance)
+		var cur_distance_fraction: float = min(1.0, float(player_state.cur_distance)/max_distance)
 		cur_max_time = spawn_time_curve.interpolate(cur_distance_fraction)
 #		print(cur_max_time)
 

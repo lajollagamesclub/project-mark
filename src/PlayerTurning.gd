@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 const player_state = preload("res://player_state.tres")
-const game_state = preload("res://game_state.tres")
 
 const dash_time = 0.5
 const dash_cooldown_time = 3.0
@@ -28,7 +27,7 @@ func _input(event):
 		set_physics_process(true)
 
 func _process(delta):
-	game_state.cur_distance = get_node("../World").global_position.distance_to(Vector2())
+	player_state.cur_distance = get_node("../World").global_position.distance_to(Vector2())
 	cur_dash_cooldown_time += delta
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
 		var tapped = asteroid.tap_resource(delta)

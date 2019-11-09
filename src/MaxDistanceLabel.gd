@@ -1,6 +1,6 @@
 extends Label
 
-const game_state = preload("res://game_state.tres")
+const player_state = preload("res://player_state.tres")
 
 func _process(delta):
-	text = str(stepify(game_state.max_distance, 0.01))
+	text = str(stepify(player_state.max_distance, 0.01))
