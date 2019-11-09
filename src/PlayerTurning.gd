@@ -25,7 +25,7 @@ func _input(event):
 		set_physics_process(true)
 
 func _process(delta):
-	game_state.cur_distance = global_position.distance_to(Vector2())
+	game_state.cur_distance = get_node("../World").global_position.distance_to(Vector2())
 	cur_dash_cooldown_time += delta
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
 		var tapped = asteroid.tap_resource(delta)
@@ -68,7 +68,6 @@ func _physics_process(delta):
 #	var dash: int = int(Input.is_action_just_pressed("g_dash_right")) - int(Input.is_action_just_pressed("g_dash_left"))
 	
 	if player_state.can_fire_bullet() and (abs(horizontal_fire) > 0 or abs(vertical_fire) > 0):
-		
 
 		var rotation_vector: Vector2 = Vector2(horizontal_fire, vertical_fire)
 		var rotation_input: float = rotation_vector.angle()
@@ -82,6 +81,5 @@ func _physics_process(delta):
 		player_state.fire_bullet()
 	
 	rotation += float(horizontal)*deg2rad(rotational_speed)*delta
-	# Vector2 move_and_slide( Vector2 linear_velocity, Vector2 floor_normal=Vector2( 0, 0 ), bool stop_on_slope=false, int max_slides=4, float floor_max_angle=0.785398, bool infinite_inertia=true )
-# warning-ignore:return_value_discarded
-	move_and_slide(Vector2(0, -cur_speed).rotated(rotation), Vector2(), false, 1, 0.7, false)
+	#move_and_slide(Vector2(0, -cur_speed).rotated(rotation), Vector2(), false, 1, 0.7, false)
+	get_node("../World").global_position -= Vector2(0, -cur_speed).rotated(rotation)*delta
