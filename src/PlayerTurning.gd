@@ -11,7 +11,8 @@ const rotational_speed = 360.0
 
 
 var dashing: bool = false
-onready var cur_speed: float = movement_speed
+onready var target_speed: float = movement_speed
+var cur_speed: float = 0.0
 var cur_dash_time: float = 0.0
 var cur_dash_cooldown_time: float = 0.0
 
@@ -51,13 +52,13 @@ func _process(delta):
 			$CollisionPolygon2D.disabled = false
 			cur_dash_time = 0.0
 			cur_dash_cooldown_time = 0.0
-			cur_speed = movement_speed
+			target_speed = movement_speed
 			dashing = false
 
 #	print(cur_dash_cooldown_time >= dash_cooldown_time)
 	if Input.is_action_just_pressed("g_dash") and not dashing and cur_dash_cooldown_time >= dash_cooldown_time:
 		$CollisionPolygon2D.disabled = true
-		cur_speed = dash_speed
+		target_speed = dash_speed
 		$Sprite.modulate.a = 0.5
 		dashing = true
 
@@ -84,7 +85,13 @@ func _physics_process(delta):
 	
 	rotation += float(horizontal)*deg2rad(rotational_speed)*delta
 	#move_and_slide(Vector2(0, -cur_speed).rotated(rotation), Vector2(), false, 1, 0.7, false)
+	cur_speed = lerp(cur_speed, target_speed, 0.1)
 	var movement_vector: Vector2 = Vector2(0, -cur_speed).rotated(rotation)*delta
 	is_on_wall = test_move(global_transform, movement_vector, false)
 	if not is_on_wall:
 		get_node("../World").global_position -= movement_vector
+
+
+func _on_AsteroidDestroyer_bumped():
+	cur_speed = 0.0
+	player_state.fuel -= min(30.0, player_state.fuel - 1.0)

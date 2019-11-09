@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://PlayerTurning.gd" type="Script" id=1]
 [ext_resource path="res://spaceship.png" type="Texture" id=2]
@@ -6,9 +6,13 @@
 [ext_resource path="res://player-attack.wav" type="AudioStream" id=4]
 [ext_resource path="res://BulletSpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://AutoAim.tscn" type="PackedScene" id=6]
+[ext_resource path="res://AsteroidDestroyer.gd" type="Script" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 234.117
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 38.4415
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -27,7 +31,7 @@ margin_bottom = 10.0
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
-offset = Vector2( 2, 5.5 )
+offset = Vector2( -0.05, -2.154 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -36.0958, -0.766258, -0.421806, -31.2081, 35.7279, 0.185051, 35.7279, 9.93595, -36.0958, 9.4603 )
@@ -54,3 +58,11 @@ volume_db = -12.93
 [node name="BulletSpawner" parent="." instance=ExtResource( 5 )]
 
 [node name="AutoAim" parent="." instance=ExtResource( 6 )]
+
+[node name="AsteroidDestroyer" type="Area2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AsteroidDestroyer"]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="AsteroidDestroyer" to="AsteroidDestroyer" method="_on_AsteroidDestroyer_body_entered"]
+[connection signal="bumped" from="AsteroidDestroyer" to="." method="_on_AsteroidDestroyer_bumped"]
