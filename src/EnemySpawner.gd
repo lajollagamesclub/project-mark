@@ -17,7 +17,7 @@ func _ready():
 
 func _process(delta):
 	cur_time += delta
-	if cur_time > cur_max_time:
+	if cur_time > cur_max_time and game_state.cur_distance >= 500.0:
 		cur_time = 0.0
 		spawn_enemy()
 		var cur_distance_fraction: float = min(1.0, float(game_state.cur_distance)/max_distance)
