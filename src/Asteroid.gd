@@ -54,5 +54,8 @@ func die():
 	queue_free()
 
 func explode():
-	print("boom")
+	var cur_destroyed_asteroid: Node2D = preload("res://DestroyedAsteroid.tscn").instance()
+	get_parent().add_child(cur_destroyed_asteroid)
+	cur_destroyed_asteroid.global_position = global_position
+	cur_destroyed_asteroid.rotation = $Sprite.rotation
 	die()
