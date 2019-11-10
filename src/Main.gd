@@ -6,7 +6,7 @@ const distance_filename = "user://score.txt"
 
 func _ready():
 	player_state.tree = get_tree()
-	player_state.cur_distance = 0.0
+	player_state.cur_position = Vector2(0.0, 0.0)
 	player_state.health = 100.0
 	
 	
