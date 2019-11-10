@@ -48,7 +48,7 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/center = Vector2( 960, 540 )
 shader_param/width = 0.162
-shader_param/dist = 0.916364
+shader_param/dist = 0.537471
 
 [node name="RadialDistortion" type="Node2D"]
 material = SubResource( 2 )
