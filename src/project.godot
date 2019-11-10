@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "InWorldKinematic",
 "language": "GDScript",
 "path": "res://InWorldKinematic.gd"
+}, {
+"base": "Node2D",
+"class": "SimpleQuad",
+"language": "GDScript",
+"path": "res://SimpleQuad.gd"
 } ]
 _global_script_class_icons={
 "InWorld2D": "",
 "InWorldGUI": "",
-"InWorldKinematic": ""
+"InWorldKinematic": "",
+"SimpleQuad": ""
 }
 
 [application]

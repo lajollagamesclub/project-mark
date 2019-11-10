@@ -78,9 +78,7 @@ visible = false
 visible = false
 
 [node name="StarryBackground" parent="World/StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
-relative_motion = 1.0
 parallax_scale = 0.7
-offset = Vector2( 0, 0 )
 
 [node name="StarryBackground2" parent="World/StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 visible = false
@@ -109,12 +107,14 @@ position = Vector2( 669.179, 90.1779 )
 texture = ExtResource( 6 )
 
 [node name="AsteroidSpawner" parent="World" instance=ExtResource( 7 )]
+show_spawn_visually = false
 safe_radius = 800.0
 camera_view_radius = 1920.0
 player_visibility_radius = 3000.0
 to_spawn_pack = ExtResource( 8 )
 player_path = NodePath("../../Player")
 spawn_time_curve = SubResource( 3 )
+max_distance = 50000.0
 
 [node name="EnemySpawner" type="Node2D" parent="World"]
 position = Vector2( 0, -1 )
