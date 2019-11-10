@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://RadialDistortion.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 center = vec2(960, 540);
+uniform float width = 0.1;
+uniform float dist = 0.2;
+
+float on_circle(float in_dist) {
+	return max(0.0, -pow((2.0/width)*(in_dist-dist), 2.0) + 1.0);
+}
+
+vec2 distort(vec2 in_pos, float time) {
+	vec2 to_return = vec2(0.0);
+	
+	float cur_dist = length(in_pos);
+	to_return = (normalize(in_pos)*(cur_dist + sin(time*5.0 + cur_dist*5.0)*0.1)) - normalize(in_pos)*cur_dist;
+	
+	return to_return;
+}
+
+void fragment() {
+	vec2 uv = SCREEN_UV;
+//	uv.x *= ;
+	vec2 centered_uv = (uv  - vec2(0.5));
+	float x_multiplier = SCREEN_PIXEL_SIZE.y*(1.0/SCREEN_PIXEL_SIZE.x);
+	centered_uv.x *= x_multiplier;
+	
+	float in_dist_factor = 0.0;
+	
+	float dist_from_center = length(centered_uv);
+	in_dist_factor = on_circle(dist_from_center);
+	
+	centered_uv += distort(centered_uv, TIME)*in_dist_factor;
+//	centered_uv += distort(centered_uv, TIME);
+	centered_uv.x /= x_multiplier;
+	uv = (centered_uv + vec2(0.5));
+
+	COLOR = textureLod(SCREEN_TEXTURE, uv, 0.0);
+//	COLOR = vec4(in_dist_factor);
+//	COLOR = vec4(1.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/center = Vector2( 960, 540 )
+shader_param/width = 0.162
+shader_param/dist = 0.916364
+
+[node name="RadialDistortion" type="Node2D"]
+material = SubResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}

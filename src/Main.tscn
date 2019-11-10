@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://StarsPerformanceSwitcher.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://ProgressBar.gd" type="Script" id=17]
 [ext_resource path="res://PauseMenu.gd" type="Script" id=18]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=19]
+[ext_resource path="res://RadialDistortion.tscn" type="PackedScene" id=20]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -274,6 +275,8 @@ align = 1
 valign = 1
 
 [node name="Player" parent="." instance=ExtResource( 19 )]
+
+[node name="RadialDistortion" parent="." instance=ExtResource( 20 )]
 [connection signal="tree_exiting" from="." to="." method="_on_Main_tree_exiting"]
 [connection signal="timeout" from="World/StartMeasuringTimer" to="World/StarsPerformanceSwitcher" method="_on_StartMeasuringTimer_timeout"]
 [connection signal="pressed" from="World/SaveScoreButton" to="." method="_on_SaveScoreButton_pressed"]
