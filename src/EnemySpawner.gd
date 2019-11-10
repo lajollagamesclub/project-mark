@@ -27,9 +27,9 @@ func _process(delta):
 func spawn_enemy():
 	var cur_enemy = enemy_pack.instance()
 	cur_enemy.player_node = player_node
-	get_node("/root/Main/World/Enemies").add_child(cur_enemy)
 	var theta = rand_range(0, 2*PI)
 	cur_enemy.global_position = player_node.global_position + Vector2(
 		cos(theta)*3000,
 		sin(theta)*3000
 	)
+	get_node("/root/Main/World/Enemies").add_child(cur_enemy)

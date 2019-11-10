@@ -1,4 +1,4 @@
-extends Node2D
+extends InWorld2D
 
 onready var fragments_node: Node2D = $Fragments
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://StarsPerformanceSwitcher.gd" type="Script" id=2]
@@ -11,13 +11,14 @@
 [ext_resource path="res://EnemySpawner.gd" type="Script" id=9]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=10]
 [ext_resource path="res://theme.tres" type="Theme" id=11]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://InWorldGUI.gd" type="Script" id=12]
 [ext_resource path="res://pc-senior/pcsenior.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://CurDistanceLabel.gd" type="Script" id=14]
 [ext_resource path="res://MaxDistanceLabel.gd" type="Script" id=15]
 [ext_resource path="res://HealthBar.gd" type="Script" id=16]
 [ext_resource path="res://ProgressBar.gd" type="Script" id=17]
 [ext_resource path="res://PauseMenu.gd" type="Script" id=18]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=19]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -77,7 +78,9 @@ visible = false
 visible = false
 
 [node name="StarryBackground" parent="World/StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
+relative_motion = 1.0
 parallax_scale = 0.7
+offset = Vector2( 0, 0 )
 
 [node name="StarryBackground2" parent="World/StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 visible = false
@@ -133,6 +136,7 @@ Use escape to pause
 
 Press space to launch"
 align = 1
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -147,6 +151,7 @@ text = "Project mark
 Made by la jolla games club"
 align = 1
 valign = 1
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -157,6 +162,7 @@ margin_top = 39.97
 margin_right = 66.0
 margin_bottom = 59.97
 text = "Click to save score"
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -267,7 +273,7 @@ text = "Press escape to unpause/pause"
 align = 1
 valign = 1
 
-[node name="Player" parent="." instance=ExtResource( 12 )]
+[node name="Player" parent="." instance=ExtResource( 19 )]
 [connection signal="tree_exiting" from="." to="." method="_on_Main_tree_exiting"]
 [connection signal="timeout" from="World/StartMeasuringTimer" to="World/StarsPerformanceSwitcher" method="_on_StartMeasuringTimer_timeout"]
 [connection signal="pressed" from="World/SaveScoreButton" to="." method="_on_SaveScoreButton_pressed"]

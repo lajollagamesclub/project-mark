@@ -27,7 +27,6 @@ func _input(event):
 		set_physics_process(true)
 
 func _process(delta):
-	player_state.cur_distance = get_node("../World").global_position.distance_to(Vector2())
 	cur_dash_cooldown_time += delta
 	for asteroid in $AsteroidVisualizations.get_bodies_in_group():
 		var tapped = asteroid.tap_resource(delta)
@@ -90,7 +89,8 @@ func _physics_process(delta):
 	var movement_vector: Vector2 = Vector2(0, -cur_speed).rotated(rotation)*delta
 	is_on_wall = test_move(global_transform, movement_vector, false)
 	if not is_on_wall:
-		get_node("../World").global_position -= movement_vector
+#		get_node("../World").global_position -= movement_vector
+		player_state.move(-movement_vector)
 
 
 func _on_AsteroidDestroyer_bumped():

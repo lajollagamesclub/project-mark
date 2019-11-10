@@ -1,8 +1,7 @@
-extends KinematicBody2D
+extends InWorldKinematic
 
 signal dead
 
-const player_state = preload("res://player_state.tres")
 const damage = 10.0
 
 var despawn_distance: float = 8000.0

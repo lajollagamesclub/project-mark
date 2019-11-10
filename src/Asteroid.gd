@@ -1,5 +1,5 @@
 tool
-extends StaticBody2D
+extends InWorldKinematic
 
 signal dead
 

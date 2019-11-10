@@ -30,17 +30,17 @@ func _process(delta):
 		return
 	if show_spawn_visually:
 		update()
-	if global_position.distance_to(Vector2()) >= safe_radius:
+	if player_state.cur_distance >= safe_radius:
 		while number_of_enemies < target_enemies:
 			var cur_enemy = to_spawn_pack.instance()
 			cur_enemy.player_node = player_node
 			cur_enemy.despawn_distance = player_visibility_radius
-			add_child(cur_enemy)
 			var theta = rand_range(0, 2*PI)
 			var length = rand_range(camera_view_radius, player_visibility_radius)
 			cur_enemy.global_position = Vector2() + \
 				Vector2(cos(theta)*length, sin(theta)*length)
 			cur_enemy.connect("dead", self, "enemy_died")
+			add_child(cur_enemy)
 			number_of_enemies += 1
 
 	var cur_distance_fraction: float = min(1.0, float(player_state.cur_distance)/max_distance)

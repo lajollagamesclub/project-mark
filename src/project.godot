@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "InWorld2D",
+"language": "GDScript",
+"path": "res://InWorld2D.gd"
+}, {
+"base": "Control",
+"class": "InWorldGUI",
+"language": "GDScript",
+"path": "res://InWorldGUI.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "InWorldKinematic",
+"language": "GDScript",
+"path": "res://InWorldKinematic.gd"
+} ]
 _global_script_class_icons={
-
+"InWorld2D": "",
+"InWorldGUI": "",
+"InWorldKinematic": ""
 }
 
 [application]

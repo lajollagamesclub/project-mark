@@ -7,8 +7,8 @@
 extents = Vector2( 24.4559, 21.5163 )
 
 [node name="Enemy" type="KinematicBody2D" groups=[
-"targetable",
 "hittable",
+"targetable",
 ]]
 script = ExtResource( 1 )
 

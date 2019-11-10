@@ -6,18 +6,20 @@ signal moved(move_vector)
 
 # warning-ignore:unused_class_variable
 var max_distance: int = 0 
-var cur_distance: int = 0 setget set_distance
+var cur_distance: int = 0 setget ,get_cur_distance
+var cur_position: Vector2 = Vector2()
 var fuel: float = 100.0 setget set_fuel
 var health: float = 100.0 setget set_health
 var tree: SceneTree = null
 
-func set_distance(new_distance):
-	cur_distance = new_distance
-	if new_distance > max_distance:
-		max_distance = int(round(new_distance))
+func get_cur_distance() -> int:
+	return int(cur_position.length())
 
-func reset_distance():
-	cur_distance = 0
+func move(move_vector: Vector2):
+	cur_position += move_vector
+	emit_signal("moved", move_vector)
+	if self.cur_distance > max_distance:
+		max_distance = int(round(self.cur_distance))
 
 func set_fuel(new_fuel):
 	if new_fuel > 100 or new_fuel < 0:

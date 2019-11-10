@@ -9,7 +9,7 @@
 [ext_resource path="res://AsteroidDestroyer.gd" type="Script" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 234.117
+radius = 266.158
 
 [node name="Player" type="KinematicBody2D" groups=[
 "player",
@@ -60,6 +60,6 @@ volume_db = -12.93
 script = ExtResource( 7 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AsteroidDestroyer"]
-polygon = PoolVector2Array( -44.7323, -3.64243, -0.25853, -44.5487, 45.4043, -6.0207, 45.4043, 18.9512, -43.0675, 19.6647 )
+polygon = PoolVector2Array( -44.7323, -3.64243, -0.25853, -44.5487, 45.4043, -6.0207, 45.4043, 18.9512, -44.9218, 19.2174 )
 [connection signal="body_entered" from="AsteroidDestroyer" to="AsteroidDestroyer" method="_on_AsteroidDestroyer_body_entered"]
 [connection signal="bumped" from="AsteroidDestroyer" to="." method="_on_AsteroidDestroyer_bumped"]
