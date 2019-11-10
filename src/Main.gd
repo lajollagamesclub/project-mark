@@ -6,6 +6,9 @@ const distance_filename = "user://score.txt"
 
 func _ready():
 	player_state.tree = get_tree()
+	player_state.cur_distance = 0.0
+	player_state.health = 100.0
+	
 	
 	var distance_file = File.new()
 	if distance_file.file_exists(distance_filename):
