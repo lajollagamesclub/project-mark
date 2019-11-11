@@ -8,16 +8,26 @@ code = "shader_type canvas_item;
 uniform vec2 center = vec2(960, 540);
 uniform float width = 0.1;
 uniform float dist = 0.2;
+uniform vec4 multiply_color = vec4(1.0);
 
 float on_circle(float in_dist) {
 	return max(0.0, -pow((2.0/width)*(in_dist-dist), 2.0) + 1.0);
 }
 
-vec2 distort(vec2 in_pos, float time) {
+vec2 hard_distort(vec2 in_pos, float time) {
 	vec2 to_return = vec2(0.0);
 	
 	float cur_dist = length(in_pos);
 	to_return = (normalize(in_pos)*(cur_dist + sin(time*5.0 + cur_dist*5.0)*0.1)) - normalize(in_pos)*cur_dist;
+	
+	return to_return;
+}
+
+vec2 soft_distort(vec2 in_pos, float time) {
+	vec2 to_return = vec2(0.0);
+	
+	to_return = vec2(cos(time + in_pos.y*10.0), sin(time + in_pos.x*10.0))*0.02;
+	to_return = vec2(cos(time + in_pos.y*10.0), sin(time + in_pos.x*10.0))*0.02;
 	
 	return to_return;
 }
@@ -30,16 +40,19 @@ void fragment() {
 	centered_uv.x *= x_multiplier;
 	
 	float in_dist_factor = 0.0;
+	float in_overriding_circle = 0.0;
 	
 	float dist_from_center = length(centered_uv);
 	in_dist_factor = on_circle(dist_from_center);
+	in_overriding_circle = step(dist, dist_from_center)*-1.0 + 1.0;
 	
-	centered_uv += distort(centered_uv, TIME)*in_dist_factor;
-//	centered_uv += distort(centered_uv, TIME);
+	centered_uv += hard_distort(centered_uv, TIME)*in_dist_factor*min(dist*5.0, 1.0);
+	centered_uv += soft_distort(centered_uv, TIME)*in_overriding_circle;
+//	centered_uv += hard_distort(centered_uv, TIME);
 	centered_uv.x /= x_multiplier;
 	uv = (centered_uv + vec2(0.5));
 
-	COLOR = textureLod(SCREEN_TEXTURE, uv, 0.0);
+	COLOR = textureLod(SCREEN_TEXTURE, uv, 0.0)*mix(vec4(1.0),multiply_color,in_overriding_circle);
 //	COLOR = vec4(in_dist_factor);
 //	COLOR = vec4(1.0);
 }"
@@ -48,7 +61,8 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/center = Vector2( 960, 540 )
 shader_param/width = 0.162
-shader_param/dist = 0.537471
+shader_param/dist = 0.710691
+shader_param/multiply_color = Plane( 1.002, 0.771, 0.856, 1 )
 
 [node name="RadialDistortion" type="Node2D"]
 material = SubResource( 2 )
