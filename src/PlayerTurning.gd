@@ -66,19 +66,22 @@ func _physics_process(delta):
 	var horizontal: int = int(Input.is_action_pressed("g_right")) - int(Input.is_action_pressed("g_left"))
 # warning-ignore:unused_variable
 	var vertical: int = int(Input.is_action_pressed("g_up")) - int(Input.is_action_pressed("g_down"))
-	var horizontal_fire: int = int(Input.is_action_just_pressed("g_fire_right")) - int(Input.is_action_just_pressed("g_fire_left"))
-	var vertical_fire: int = int(Input.is_action_just_pressed("g_fire_down")) - int(Input.is_action_just_pressed("g_fire_up"))
+#	var horizontal_fire: int = int(Input.is_action_just_pressed("g_fire_right")) - int(Input.is_action_just_pressed("g_fire_left"))
+#	var vertical_fire: int = int(Input.is_action_just_pressed("g_fire_down")) - int(Input.is_action_just_pressed("g_fire_up"))
 #	var dash: int = int(Input.is_action_just_pressed("g_dash_right")) - int(Input.is_action_just_pressed("g_dash_left"))
 	
-	if player_state.can_fire_bullet() and (abs(horizontal_fire) > 0 or abs(vertical_fire) > 0):
+	if player_state.can_fire_bullet() and Input.is_action_just_pressed("g_fire"):
 
-		var rotation_vector: Vector2 = Vector2(horizontal_fire, vertical_fire)
+		var width = ProjectSettings.get_setting("display/window/size/width")
+		var height = ProjectSettings.get_setting("display/window/size/height")
+		var size_vect: Vector2 = Vector2(width, height)
+		
+		var rotation_vector: Vector2 = (get_viewport().get_mouse_position() - size_vect/2).normalized()
 		var rotation_input: float = rotation_vector.angle()
 		rotation_input = rotation_input
 		
 		var input_vector = Vector2(1, 0).rotated(rotation_input)
 
-		rotation_input = $AutoAim.get_suggestion(input_vector, 45.0)
 		$BulletSpawner.spawn_bullet(rotation_input)
 		$FireStreamPlayer.play()
 		player_state.fire_bullet()
