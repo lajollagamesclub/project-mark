@@ -174,11 +174,14 @@ __meta__ = {
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+[node name="Distances" type="VBoxContainer" parent="UI"]
 anchor_right = 1.0
 margin_bottom = 115.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CurDistanceLabel" type="Label" parent="UI/VBoxContainer"]
+[node name="CurDistanceLabel" type="Label" parent="UI/Distances"]
 margin_right = 1920.0
 margin_bottom = 74.0
 size_flags_vertical = 3
@@ -193,7 +196,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MaxDistanceLabel" type="Label" parent="UI/VBoxContainer"]
+[node name="MaxDistanceLabel" type="Label" parent="UI/Distances"]
 modulate = Color( 0.592157, 0.592157, 0.592157, 1 )
 margin_top = 78.0
 margin_right = 1920.0
@@ -209,27 +212,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bars" type="VBoxContainer" parent="UI"]
+[node name="LowerUI" type="VBoxContainer" parent="UI"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -64.0
+margin_top = -240.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComponentsMarginContainer" type="MarginContainer" parent="UI/LowerUI"]
+margin_right = 1920.0
+margin_bottom = 118.0
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/LowerUI/ComponentsMarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1900.0
+margin_bottom = 98.0
+
+[node name="Bars" type="VBoxContainer" parent="UI/LowerUI"]
+margin_top = 122.0
+margin_right = 1920.0
+margin_bottom = 240.0
+size_flags_vertical = 3
 theme = ExtResource( 11 )
 
-[node name="HealthBar" type="ProgressBar" parent="UI/Bars"]
+[node name="HealthBar" type="ProgressBar" parent="UI/LowerUI/Bars"]
 modulate = Color( 0.376471, 0.756863, 0.8, 0.501961 )
 margin_right = 1920.0
-margin_bottom = 30.0
+margin_bottom = 57.0
 size_flags_vertical = 3
 value = 50.0
 percent_visible = false
 script = ExtResource( 16 )
 
-[node name="AmmoBar" type="ProgressBar" parent="UI/Bars"]
+[node name="AmmoBar" type="ProgressBar" parent="UI/LowerUI/Bars"]
 modulate = Color( 1, 1, 1, 0.501961 )
-margin_top = 34.0
+margin_top = 61.0
 margin_right = 1920.0
-margin_bottom = 64.0
+margin_bottom = 118.0
 size_flags_vertical = 3
 theme = ExtResource( 11 )
 value = 50.0

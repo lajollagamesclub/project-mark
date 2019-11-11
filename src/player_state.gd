@@ -4,6 +4,10 @@ signal fuel_changed(new_fuel)
 signal health_changed(new_health)
 signal moved(move_vector)
 
+const components = {
+	"warping" : "Warping.tscn"
+}
+
 # warning-ignore:unused_class_variable
 var max_distance: int = 0 
 var cur_distance: int = 0 setget ,get_cur_distance
