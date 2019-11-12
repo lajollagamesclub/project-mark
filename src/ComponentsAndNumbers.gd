@@ -23,3 +23,9 @@ func _on_components_changed(new_components):
 func remove_children(parent_node: Node):
 	for c in parent_node.get_children():
 		c.queue_free()
+
+func _input(event):
+	if event is InputEventKey:
+		if event.scancode >= KEY_1 and event.scancode <= KEY_9:
+			var key_number: int = event.scancode - KEY_1 + 1
+			
