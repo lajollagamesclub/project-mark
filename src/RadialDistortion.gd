@@ -1,12 +1,15 @@
 tool
 extends SimpleQuad
 
+const player_state = preload("res://player_state.tres")
+
 export var reset = false setget set_reset
 
 var direction: float = 1.0
 
 func _ready():
 	set_process(false)
+	player_state.connect("hyperspace_changed", self, "_on_hyperspace_changed")
 	material.set_shader_param("dist", 0.0)
 
 func set_reset(new_reset):
@@ -30,3 +33,9 @@ func into_hyperspace():
 func outof_hyperspace():
 	self.reset = true
 	direction = -1.0
+
+func _on_hyperspace_changed(new_hyperspace):
+	if new_hyperspace:
+		into_hyperspace()
+	else:
+		outof_hyperspace()

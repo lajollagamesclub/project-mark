@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://StarsPerformanceSwitcher.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://PauseMenu.gd" type="Script" id=18]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=19]
 [ext_resource path="res://RadialDistortion.tscn" type="PackedScene" id=20]
+[ext_resource path="res://ComponentsAndNumbers.gd" type="Script" id=21]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -216,37 +217,62 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -240.0
+margin_top = -193.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ComponentsMarginContainer" type="MarginContainer" parent="UI/LowerUI"]
 margin_right = 1920.0
-margin_bottom = 118.0
+margin_bottom = 126.0
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/LowerUI/ComponentsMarginContainer"]
+[node name="ComponentsPanelContainer" type="PanelContainer" parent="UI/LowerUI/ComponentsMarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1900.0
-margin_bottom = 98.0
+margin_bottom = 106.0
+theme = ExtResource( 11 )
+
+[node name="InnerMarginContainer" type="MarginContainer" parent="UI/LowerUI/ComponentsMarginContainer/ComponentsPanelContainer"]
+margin_right = 1880.0
+margin_bottom = 86.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="ComponentsAndNumbers" type="VBoxContainer" parent="UI/LowerUI/ComponentsMarginContainer/ComponentsPanelContainer/InnerMarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1870.0
+margin_bottom = 76.0
+script = ExtResource( 21 )
+
+[node name="ComponentsList" type="HBoxContainer" parent="UI/LowerUI/ComponentsMarginContainer/ComponentsPanelContainer/InnerMarginContainer/ComponentsAndNumbers"]
+margin_right = 1860.0
+
+[node name="NumbersList" type="HBoxContainer" parent="UI/LowerUI/ComponentsMarginContainer/ComponentsPanelContainer/InnerMarginContainer/ComponentsAndNumbers"]
+margin_top = 4.0
+margin_right = 1860.0
+margin_bottom = 4.0
 
 [node name="Bars" type="VBoxContainer" parent="UI/LowerUI"]
-margin_top = 122.0
+margin_top = 130.0
 margin_right = 1920.0
-margin_bottom = 240.0
+margin_bottom = 193.0
 size_flags_vertical = 3
 theme = ExtResource( 11 )
 
 [node name="HealthBar" type="ProgressBar" parent="UI/LowerUI/Bars"]
 modulate = Color( 0.376471, 0.756863, 0.8, 0.501961 )
 margin_right = 1920.0
-margin_bottom = 57.0
+margin_bottom = 29.0
 size_flags_vertical = 3
 value = 50.0
 percent_visible = false
@@ -254,9 +280,9 @@ script = ExtResource( 16 )
 
 [node name="AmmoBar" type="ProgressBar" parent="UI/LowerUI/Bars"]
 modulate = Color( 1, 1, 1, 0.501961 )
-margin_top = 61.0
+margin_top = 33.0
 margin_right = 1920.0
-margin_bottom = 118.0
+margin_bottom = 63.0
 size_flags_vertical = 3
 theme = ExtResource( 11 )
 value = 50.0

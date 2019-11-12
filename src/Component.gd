@@ -16,7 +16,6 @@ func _ready():
 	self.cooldown_time = cooldown_time
 	set_process(false)
 	$CooldownVisualizer.visible = false
-#	start_cooldown()
 
 func _process(delta):
 	cur_cooldown_time -= delta
@@ -24,6 +23,9 @@ func _process(delta):
 	if cur_cooldown_time <= 0.0:
 		$CooldownVisualizer.visible = false
 		set_process(false)
+
+func is_cooled_down() -> bool:
+	return cur_cooldown_time <= 0.0
 
 func start_cooldown():
 	cur_cooldown_time = cooldown_time

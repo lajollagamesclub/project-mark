@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://ComponentNumberLabel.gd" type="Script" id=2]
+
+[node name="ComponentNumberLabel" type="CenterContainer"]
+margin_right = 40.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 12.0
+margin_right = 28.0
+margin_bottom = 16.0
+theme = ExtResource( 1 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}

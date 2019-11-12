@@ -3,10 +3,16 @@ extends Resource
 signal fuel_changed(new_fuel)
 signal health_changed(new_health)
 signal moved(move_vector)
+signal components_changed(new_components)
+signal hyperspace_changed(new_in_hyperspace)
 
-const components = {
+const available_components = {
 	"warping" : "Warping.tscn"
 }
+
+var cur_components: Array = [
+	"warping"
+]
 
 # warning-ignore:unused_class_variable
 var max_distance: int = 0 
@@ -14,7 +20,25 @@ var cur_distance: int = 0 setget ,get_cur_distance
 var cur_position: Vector2 = Vector2()
 var fuel: float = 100.0 setget set_fuel
 var health: float = 100.0 setget set_health
-var tree: SceneTree = null
+var in_hyperspace: bool = false setget set_in_hyperspace
+var tree: SceneTree
+
+func get_component_scene(component_name: String) -> String:
+	return available_components[component_name]
+
+func add_component(component_name: String):
+	if not component_name in available_components.keys():
+		printerr("Unknown component " + component_name)
+	else:
+		cur_components.append(component_name)
+		emit_signal("components_changed", cur_components)
+
+func remove_component(component_name: String):
+	if not component_name in cur_components:
+		printerr("Component " + component_name + " is not currently equipped, cannot remove")
+	else:
+		cur_components.erase(component_name)
+		emit_signal("components_changed", cur_components)
 
 func get_cur_distance() -> int:
 	return int(cur_position.length())
@@ -24,6 +48,10 @@ func move(move_vector: Vector2):
 	emit_signal("moved", move_vector)
 	if self.cur_distance > max_distance:
 		max_distance = int(round(self.cur_distance))
+
+func set_in_hyperspace(new_in_hyperspace):
+	in_hyperspace = new_in_hyperspace
+	emit_signal("hyperspace_changed", new_in_hyperspace)
 
 func set_fuel(new_fuel):
 	if new_fuel > 100 or new_fuel < 0:
