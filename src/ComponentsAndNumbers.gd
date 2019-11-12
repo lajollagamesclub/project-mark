@@ -22,7 +22,7 @@ func remove_children(parent_node: Node):
 		c.queue_free()
 
 func _input(event):
-	if event is InputEventKey:
+	if event is InputEventKey and event.pressed:
 		if event.scancode >= KEY_1 and event.scancode <= KEY_9:
 			var key_number: int = event.scancode - KEY_1 + 1
 			for c in components_list.get_children():

@@ -16,20 +16,17 @@ func _ready():
 
 func set_reset(new_reset):
 #	reset = new_reset
-	time = 0.0
+#	time = 0.0
 	set_process(true)
 
 func _process(delta):
-	if time >= 1.2:
-#		time = 0.0
+	time += direction*delta/4.0
+	if time >= 1.2 or time <= 0.0:
 		if direction <= 0.0:
 			material.set_shader_param("dist", 0.0)
 		set_process(false)
-	time += delta/4.0
-	if direction > 0.0:
-		material.set_shader_param("dist", time*direction)
-	elif time < 1.2:
-		material.set_shader_param("dist", 1.2 + time*direction)
+		return
+	material.set_shader_param("dist", time)
 
 func into_hyperspace():
 	self.reset = true
