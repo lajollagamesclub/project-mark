@@ -126,15 +126,16 @@ enemy_pack = ExtResource( 10 )
 spawn_time_curve = SubResource( 4 )
 
 [node name="InstructionsLabel" type="Label" parent="World"]
-margin_left = -184.0
-margin_top = -152.0
-margin_right = 184.0
-margin_bottom = -17.0
+margin_left = -264.0
+margin_top = -200.0
+margin_right = 264.0
+margin_bottom = -65.0
 theme = ExtResource( 11 )
 text = "Use A and D to turn
 Use mouse to shoot
 Use space to dash
 Use escape to pause
+Number keys to control components
 
 Press space to launch"
 align = 1
