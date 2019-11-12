@@ -12,9 +12,6 @@ const available_components = {
 
 var cur_components: Array = [
 	"warping",
-	"warping",
-	"warping",
-	"warping"
 ]
 
 # warning-ignore:unused_class_variable
