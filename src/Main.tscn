@@ -257,11 +257,6 @@ script = ExtResource( 21 )
 [node name="ComponentsList" type="HBoxContainer" parent="UI/LowerUI/ComponentsMarginContainer/ComponentsPanelContainer/InnerMarginContainer/ComponentsAndNumbers"]
 margin_right = 1860.0
 
-[node name="NumbersList" type="HBoxContainer" parent="UI/LowerUI/ComponentsMarginContainer/ComponentsPanelContainer/InnerMarginContainer/ComponentsAndNumbers"]
-margin_top = 4.0
-margin_right = 1860.0
-margin_bottom = 4.0
-
 [node name="Bars" type="VBoxContainer" parent="UI/LowerUI"]
 margin_top = 130.0
 margin_right = 1920.0

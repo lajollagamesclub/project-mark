@@ -11,6 +11,9 @@ const available_components = {
 }
 
 var cur_components: Array = [
+	"warping",
+	"warping",
+	"warping",
 	"warping"
 ]
 

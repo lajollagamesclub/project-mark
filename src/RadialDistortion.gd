@@ -11,6 +11,7 @@ func _ready():
 	set_process(false)
 	player_state.connect("hyperspace_changed", self, "_on_hyperspace_changed")
 	material.set_shader_param("dist", 0.0)
+#	into_hyperspace()
 
 func set_reset(new_reset):
 #	reset = new_reset
