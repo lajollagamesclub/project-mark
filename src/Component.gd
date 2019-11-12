@@ -35,7 +35,7 @@ func _process(delta):
 		set_process(false)
 
 func is_cooled_down() -> bool:
-	return cur_cooldown_time <= 0.0
+	return cur_cooldown_time <= 0.0 and can_fire()
 
 func start_cooldown():
 	cur_cooldown_time = cooldown_time
@@ -43,4 +43,7 @@ func start_cooldown():
 	set_process(true)
 
 func on_trigger():
-	printerr("This method must be overloaded in component " + name)
+	printerr("The on_trigger be overloaded in component " + name)
+
+func can_fire():
+	printerr("The can_fire method must be overloaded in component " + name)

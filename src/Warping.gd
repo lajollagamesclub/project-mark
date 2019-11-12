@@ -13,3 +13,11 @@ func on_trigger() -> bool:
 	player_state.in_hyperspace = !player_state.in_hyperspace
 	start_cooldown()
 	return true
+
+func _physics_process(delta):
+	if player_state.in_hyperspace and player_state.cur_distance >= player_state.max_distance - 500.0:
+		player_state.in_hyperspace = !player_state.in_hyperspace
+		start_cooldown()
+
+func can_fire() -> bool:
+	return player_state.cur_distance < player_state.max_distance - 500.0

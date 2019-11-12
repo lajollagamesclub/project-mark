@@ -61,7 +61,7 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/center = Vector2( 960, 540 )
 shader_param/width = 0.162
-shader_param/dist = 0.881055
+shader_param/dist = 0.0
 shader_param/multiply_color = Plane( 1.002, 0.771, 0.856, 1 )
 
 [node name="RadialDistortion" type="Node2D"]

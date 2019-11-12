@@ -5,11 +5,13 @@ const player_state = preload("res://player_state.tres")
 const dash_time = 0.5
 const dash_cooldown_time = 3.0
 const dash_speed = 1500.0
+const hyperspace_speed = 9000.0
 const movement_speed = 600.0
 const rotational_speed = 360.0
 
 
 var dashing: bool = false
+var can_dash: bool = false
 onready var target_speed: float = movement_speed
 var cur_speed: float = 0.0
 var cur_dash_time: float = 0.0
@@ -20,6 +22,19 @@ var is_on_wall: bool = false
 func _ready():
 	set_physics_process(false)
 	set_process(false)
+	player_state.connect("hyperspace_changed", self, "_on_hyperspace_changed")
+
+func _on_hyperspace_changed(new_hyperspace_changed):
+	if new_hyperspace_changed:
+		can_dash = false
+		target_speed = hyperspace_speed
+		$CollisionPolygon2D.disabled = true
+		$AsteroidDestroyer.disabled = true
+	else:
+		can_dash = true
+		target_speed = movement_speed
+		$CollisionPolygon2D.disabled = false
+		$AsteroidDestroyer.disabled = false
 
 func _input(event):
 	if event.is_action_pressed("g_start"):
@@ -55,7 +70,7 @@ func _process(delta):
 			dashing = false
 
 #	print(cur_dash_cooldown_time >= dash_cooldown_time)
-	if Input.is_action_just_pressed("g_dash") and not dashing and cur_dash_cooldown_time >= dash_cooldown_time:
+	if Input.is_action_just_pressed("g_dash") and not dashing and cur_dash_cooldown_time >= dash_cooldown_time and can_dash:
 		$CollisionPolygon2D.disabled = true
 		$AsteroidDestroyer.disabled = true
 		target_speed = dash_speed
@@ -93,6 +108,7 @@ func _physics_process(delta):
 	is_on_wall = test_move(global_transform, movement_vector, false)
 	if not is_on_wall:
 #		get_node("../World").global_position -= movement_vector
+
 		player_state.move(-movement_vector)
 
 
