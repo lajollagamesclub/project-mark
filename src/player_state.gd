@@ -5,13 +5,16 @@ signal health_changed(new_health)
 signal moved(move_vector)
 signal components_changed(new_components)
 signal hyperspace_changed(new_in_hyperspace)
+signal dashing_changed(new_dashing)
 
 const available_components = {
-	"warping" : "Warping.tscn"
+	"warping" : "Warping.tscn",
+	"dashing" : "Dashing.tscn"
 }
 
 var cur_components: Array = [
 	"warping",
+	"dashing"
 ]
 
 # warning-ignore:unused_class_variable
@@ -21,7 +24,12 @@ var cur_position: Vector2 = Vector2()
 var fuel: float = 100.0 setget set_fuel
 var health: float = 100.0 setget set_health
 var in_hyperspace: bool = false setget set_in_hyperspace
+var dashing: bool = false setget set_dashing
 var tree: SceneTree
+
+func set_dashing(new_dashing):
+	dashing = new_dashing
+	emit_signal("dashing_changed", new_dashing)
 
 func get_component_scene(component_name: String) -> String:
 	return available_components[component_name]

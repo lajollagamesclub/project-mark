@@ -80,7 +80,9 @@ visible = false
 visible = false
 
 [node name="StarryBackground" parent="World/StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
+relative_motion = 1.0
 parallax_scale = 0.7
+offset = Vector2( 0, 0 )
 
 [node name="StarryBackground2" parent="World/StarsPerformanceSwitcher/HighPerformanceStars" instance=ExtResource( 3 )]
 visible = false
