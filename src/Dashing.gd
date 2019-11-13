@@ -13,6 +13,7 @@ func on_trigger() -> bool:
 	player_state.dashing = true
 	start_cooldown()
 	$Timer.start()
+	$AudioStreamPlayer.play()
 	return true
 
 func can_fire() -> bool:
