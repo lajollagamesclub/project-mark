@@ -1,5 +1,5 @@
-# pixel-floater
-A small infinite procedurally generated world demo
+# project-mark
+This is the open source version of Project Mark partially developed at school. Further development is taking place in a closed source private repository
 
 ## play
-https://creikey.itch.io/pixel-floater
+Download [Godot](https://godotengine.org/) then import the project in `src/`
